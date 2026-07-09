@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Armónica - Brutalist Skate Menu</title>
+    <title>Armónica POS - Brutalist Skate Menu</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
     
@@ -16,6 +16,7 @@
             --text-pure: #ffffff;
             --text-muted: #666666;
             --whatsapp-glitch: #25d366;
+            --alert-red: #ff3333;
             --font-display: 'Anton', sans-serif;
             --font-body: 'Space Grotesk', sans-serif;
         }
@@ -27,256 +28,130 @@
             background-image: radial-gradient(circle at center, #111 0%, #000 100%);
         }
 
-        /* --- MARQUEE TEXT (Cinta en movimiento) --- */
-        .marquee-container {
-            background-color: var(--skate-yellow);
-            color: #000;
-            padding: 8px 0;
-            overflow: hidden;
-            white-space: nowrap;
-            position: relative;
-            border-bottom: 3px solid #000;
-            z-index: 50;
-        }
-        .marquee-text {
-            display: inline-block;
-            font-family: var(--font-display);
-            font-size: 16px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            animation: scrollMarquee 15s linear infinite;
-        }
+        /* --- MARQUEE TEXT --- */
+        .marquee-container { background-color: var(--skate-yellow); color: #000; padding: 8px 0; overflow: hidden; white-space: nowrap; position: relative; border-bottom: 3px solid #000; z-index: 50; }
+        .marquee-text { display: inline-block; font-family: var(--font-display); font-size: 16px; letter-spacing: 2px; text-transform: uppercase; animation: scrollMarquee 15s linear infinite; }
         @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         /* --- BRUTALIST HEADER --- */
         .brutal-header {
-            position: relative;
-            height: 35vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 20px;
-            /* Imagen del Skater en el fondo (572870465) */
+            position: relative; height: 35vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 20px;
             background: linear-gradient(0deg, #050505 0%, transparent 100%), url('images/572870465_18535539187049351_874623045953735305_n.jpg') center/cover;
             border-bottom: 1px solid var(--border-heavy);
         }
-        .halo-logo {
-            position: absolute;
-            top: 20px; left: 20px;
-            width: 60px; height: 60px;
-            border: 3px solid var(--text-pure);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            background: #000; z-index: 10;
-        }
+        .halo-logo { position: absolute; top: 20px; left: 20px; width: 60px; height: 60px; border: 3px solid var(--text-pure); border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #000; z-index: 10; }
         .halo-logo span { font-family: var(--font-display); font-size: 38px; margin-top: -4px; }
-        .brutal-header h1 {
-            font-family: var(--font-display);
-            font-size: 16vw; /* Tamaño dinámico extremo */
-            line-height: 0.8;
-            text-transform: uppercase;
-            color: var(--text-pure);
-            margin-left: -5px;
-            z-index: 2;
-        }
+        .brutal-header h1 { font-family: var(--font-display); font-size: 16vw; line-height: 0.8; text-transform: uppercase; color: var(--text-pure); margin-left: -5px; z-index: 2; }
         .brutal-header h1 .highlight { color: transparent; -webkit-text-stroke: 2px var(--skate-yellow); }
 
-        /* --- BENTO BOX GALLERY (Collage Asimétrico) --- */
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: auto auto auto;
-            gap: 10px;
-            padding: 15px;
-        }
-        
-        .bento-item {
-            position: relative;
-            overflow: hidden;
-            background-size: cover;
-            background-position: center;
-            border: 1px solid var(--border-heavy);
-            /* Efecto Grunge: Blanco y negro hasta que se toca */
-            filter: grayscale(100%) contrast(120%);
-            transition: all 0.4s ease;
-        }
+        /* --- BENTO BOX GALLERY --- */
+        .bento-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 15px; }
+        .bento-item { position: relative; overflow: hidden; background-size: cover; background-position: center; border: 1px solid var(--border-heavy); filter: grayscale(100%) contrast(120%); transition: all 0.4s ease; }
         .bento-item:active { filter: grayscale(0%) contrast(100%); transform: scale(0.98); z-index: 10; }
-        
-        .bento-overlay {
-            position: absolute; bottom: 0; left: 0; width: 100%;
-            background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, transparent 100%);
-            padding: 15px 10px 10px 10px;
-        }
-        .bento-overlay h2 {
-            font-family: var(--font-display);
-            font-size: 24px;
-            color: var(--skate-yellow);
-            line-height: 1;
-            text-transform: uppercase;
-        }
-
-        /* Posiciones asimétricas del Bento */
-        .bento-item.large { grid-column: 1 / -1; height: 180px; } /* Imagen ancha - Session (660293387) */
-        .bento-item.square-left { grid-column: 1 / 2; height: 160px; } /* Burger (241544772) */
-        .bento-item.square-right { grid-column: 2 / 3; height: 160px; } /* Wings (440166777) */
+        .bento-overlay { position: absolute; bottom: 0; left: 0; width: 100%; background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, transparent 100%); padding: 15px 10px 10px 10px; }
+        .bento-overlay h2 { font-family: var(--font-display); font-size: 24px; color: var(--skate-yellow); line-height: 1; text-transform: uppercase; }
+        .bento-item.large { grid-column: 1 / -1; height: 180px; }
+        .bento-item.square-left { grid-column: 1 / 2; height: 160px; }
+        .bento-item.square-right { grid-column: 2 / 3; height: 160px; }
 
         /* --- CATEGORÍAS FLOTANTES --- */
-        .nav-scroller {
-            display: flex; gap: 15px; padding: 20px 15px;
-            overflow-x: auto; scrollbar-width: none;
-            position: sticky; top: 0; z-index: 20;
-            background: rgba(5,5,5,0.9); backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-heavy);
-        }
+        .nav-scroller { display: flex; gap: 15px; padding: 20px 15px; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 20; background: rgba(5,5,5,0.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-heavy); }
         .nav-scroller::-webkit-scrollbar { display: none; }
-        .nav-item {
-            background: transparent; border: none;
-            color: var(--text-muted);
-            font-family: var(--font-display);
-            font-size: 22px;
-            text-transform: uppercase;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: color 0.2s;
-        }
+        .nav-item { background: transparent; border: none; color: var(--text-muted); font-family: var(--font-display); font-size: 22px; text-transform: uppercase; cursor: pointer; white-space: nowrap; transition: color 0.2s; }
         .nav-item.active { color: var(--text-pure); text-shadow: 0 0 10px rgba(255,255,255,0.3); }
 
-        /* --- MENÚ DE TEXTO LIMPIO --- */
+        /* --- MENÚ DE TEXTO (OPERATIVO) --- */
         .menu-list { padding: 0 15px; }
-        .menu-row {
-            display: flex; justify-content: space-between; align-items: flex-start;
-            padding: 24px 0; border-bottom: 1px solid var(--border-heavy);
-            opacity: 0; transform: translateY(15px);
-            animation: riseUp 0.4s forwards ease;
-        }
+        .menu-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 24px 0; border-bottom: 1px solid var(--border-heavy); opacity: 0; transform: translateY(15px); animation: riseUp 0.4s forwards ease; }
         @keyframes riseUp { to { opacity: 1; transform: translateY(0); } }
+        
+        /* ESTADO AGOTADO */
+        .menu-row.sold-out { opacity: 0.4; filter: grayscale(100%); pointer-events: none; }
+        .menu-row.sold-out h3 { text-decoration: line-through; }
+        .sold-badge { font-family: var(--font-display); color: var(--alert-red); font-size: 16px; border: 1px solid var(--alert-red); padding: 2px 8px; margin-top: 5px; display: inline-block; }
 
         .row-text { width: 75%; padding-right: 15px; }
         .row-text h3 { font-family: var(--font-display); font-size: 22px; text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px; }
         .row-text p { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
         
-        .row-price-action {
-            width: 25%; display: flex; flex-direction: column; align-items: flex-end; gap: 12px;
-        }
+        .row-price-action { width: 25%; display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
         .row-price-action span { font-family: var(--font-display); font-size: 22px; color: var(--skate-yellow); }
-        .btn-cross {
-            background: transparent; color: var(--text-pure);
-            border: 1px solid var(--border-heavy);
-            width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
-            font-size: 18px; cursor: pointer; transition: all 0.2s;
-        }
+        .btn-cross { background: transparent; color: var(--text-pure); border: 1px solid var(--border-heavy); width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; font-size: 18px; cursor: pointer; transition: all 0.2s; }
         .btn-cross:active { background: var(--text-pure); color: #000; }
 
-        /* --- EDITORIAL PARALLAX BREAK --- */
-        .massive-break {
-            position: relative; height: 250px; margin: 40px 0;
-            background: url('images/461050391_18456828655049351_9152402834712300352_n.jpg') center/cover fixed; /* Parallax effect */
-            display: flex; align-items: center; justify-content: center;
-            overflow: hidden;
-            border-top: 1px solid var(--border-heavy); border-bottom: 1px solid var(--border-heavy);
-        }
-        .massive-break h2 {
-            font-family: var(--font-display); font-size: 80px;
-            color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.4);
-            text-transform: uppercase; white-space: nowrap;
-            position: absolute; transform: rotate(-5deg); z-index: 2;
-        }
+        /* --- PARALLAX BREAK --- */
+        .massive-break { position: relative; height: 250px; margin: 40px 0; background: url('images/461050391_18456828655049351_9152402834712300352_n.jpg') center/cover fixed; display: flex; align-items: center; justify-content: center; overflow: hidden; border-top: 1px solid var(--border-heavy); border-bottom: 1px solid var(--border-heavy); }
+        .massive-break h2 { font-family: var(--font-display); font-size: 80px; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.4); text-transform: uppercase; white-space: nowrap; position: absolute; transform: rotate(-5deg); z-index: 2; }
 
-        /* --- COMMUNITY SECTION --- */
-        .community-zone {
-            padding: 40px 15px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
+        /* --- COMMUNITY --- */
+        .community-zone { padding: 40px 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .comm-header { grid-column: 1 / -1; margin-bottom: 10px; }
         .comm-header h2 { font-family: var(--font-display); font-size: 40px; text-transform: uppercase; line-height: 0.9; }
-        
-        .comm-img {
-            height: 140px; background-size: cover; background-position: center;
-            filter: grayscale(100%); transition: filter 0.3s;
-        }
+        .comm-img { height: 140px; background-size: cover; background-position: center; filter: grayscale(100%); transition: filter 0.3s; }
         .comm-img:active { filter: grayscale(0%); }
+        .btn-ig-brutal { grid-column: 1 / -1; background: var(--text-pure); color: #000; padding: 16px; text-align: center; text-decoration: none; font-family: var(--font-display); font-size: 24px; text-transform: uppercase; margin-top: 10px; transition: transform 0.2s; }
         
-        .btn-ig-brutal {
-            grid-column: 1 / -1;
-            background: var(--text-pure); color: #000;
-            padding: 16px; text-align: center; text-decoration: none;
-            font-family: var(--font-display); font-size: 24px; text-transform: uppercase;
-            margin-top: 10px; transition: transform 0.2s;
-        }
-        .btn-ig-brutal:active { transform: translateY(4px); }
-
         /* --- CONSOLA DE COMPRAS (Cart) --- */
-        .cart-trigger {
-            position: fixed; bottom: 20px; left: 15px; right: 15px;
-            background: var(--skate-yellow); color: #000;
-            padding: 20px; display: flex; justify-content: space-between; align-items: center;
-            font-family: var(--font-display); font-size: 22px; text-transform: uppercase;
-            z-index: 40; transform: translateY(150%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-        }
+        .cart-trigger { position: fixed; bottom: 20px; left: 15px; right: 15px; background: var(--skate-yellow); color: #000; padding: 20px; display: flex; justify-content: space-between; align-items: center; font-family: var(--font-display); font-size: 22px; text-transform: uppercase; z-index: 40; transform: translateY(150%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
         .cart-trigger.visible { transform: translateY(0); }
         .cart-badge { background: #000; color: var(--text-pure); padding: 2px 12px; font-size: 18px; }
 
-        .cart-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95); z-index: 50; display: none; align-items: flex-end;
-        }
-        .cart-panel {
-            background: var(--surface-raw); width: 100%; max-height: 85vh;
-            border-top: 2px solid var(--skate-yellow); display: flex; flex-direction: column; padding: 20px;
-            transform: translateY(100%); transition: transform 0.3s ease;
-        }
+        .cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 50; display: none; align-items: flex-end; }
+        .cart-panel { background: var(--surface-raw); width: 100%; max-height: 90vh; border-top: 2px solid var(--skate-yellow); display: flex; flex-direction: column; padding: 20px; transform: translateY(100%); transition: transform 0.3s ease; }
         .cart-overlay.active .cart-panel { transform: translateY(0); }
         
-        .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid var(--border-heavy); padding-bottom: 10px; }
-        .cart-header h2 { font-family: var(--font-display); font-size: 28px; }
+        .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid var(--border-heavy); padding-bottom: 10px; }
+        .cart-header h2 { font-family: var(--font-display); font-size: 26px; }
         .btn-close { background: none; border: none; color: var(--text-pure); font-size: 32px; }
 
-        .cart-items { overflow-y: auto; flex-grow: 1; }
-        .c-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid var(--border-heavy); }
-        .c-info h4 { font-family: var(--font-display); font-size: 18px; letter-spacing: 0.5px; }
-        .c-info span { font-size: 14px; color: var(--text-muted); }
-        .c-actions { display: flex; align-items: center; gap: 15px; }
-        .btn-qty { background: transparent; border: 1px solid var(--text-pure); color: var(--text-pure); width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
-        .c-qty { font-family: var(--font-display); font-size: 20px; }
+        /* Formularios y Propinas (NUEVO) */
+        .op-form-group { margin-bottom: 15px; }
+        .op-form-group h4 { font-family: var(--font-display); font-size: 14px; color: var(--skate-yellow); margin-bottom: 8px; letter-spacing: 1px; }
+        .brutal-input { width: 100%; background: #000; border: 1px solid var(--border-heavy); color: #fff; padding: 12px; font-family: var(--font-display); font-size: 16px; text-transform: uppercase; margin-bottom: 8px; outline: none; }
+        .brutal-input:focus { border-color: var(--skate-yellow); }
+        
+        .tip-selector { display: flex; gap: 8px; margin-bottom: 15px; }
+        .tip-pill { flex: 1; background: #000; border: 1px solid var(--border-heavy); color: #fff; padding: 10px 0; font-family: var(--font-display); font-size: 16px; cursor: pointer; transition: all 0.2s; }
+        .tip-pill.active { background: var(--skate-yellow); color: #000; border-color: var(--skate-yellow); }
 
-        .cart-footer { margin-top: 20px; }
-        .c-total { display: flex; justify-content: space-between; font-family: var(--font-display); font-size: 26px; margin-bottom: 20px; }
+        .cart-items { overflow-y: auto; flex-grow: 1; max-height: 25vh; border: 1px solid var(--border-heavy); padding: 10px; margin-bottom: 15px; background: #050505; }
+        .c-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border-heavy); }
+        .c-info h4 { font-family: var(--font-display); font-size: 16px; letter-spacing: 0.5px; }
+        .c-info span { font-size: 13px; color: var(--text-muted); }
+        .c-actions { display: flex; align-items: center; gap: 10px; }
+        .btn-qty { background: transparent; border: 1px solid var(--border-heavy); color: var(--text-pure); width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+        .c-qty { font-family: var(--font-display); font-size: 18px; }
+
+        .cart-footer { margin-top: 10px; }
+        .bill-breakdown { font-size: 14px; color: var(--text-muted); display: flex; justify-content: space-between; margin-bottom: 5px; font-family: var(--font-display); letter-spacing: 1px; }
+        .c-total { display: flex; justify-content: space-between; font-family: var(--font-display); font-size: 26px; margin: 10px 0 20px 0; border-top: 1px dashed var(--border-heavy); padding-top: 10px;}
         .c-total .val { color: var(--skate-yellow); }
-        .btn-send {
-            width: 100%; background: var(--whatsapp-glitch); color: #000; border: none; padding: 20px;
-            font-family: var(--font-display); font-size: 24px; text-transform: uppercase; display: flex; justify-content: center; align-items: center; gap: 10px;
-        }
+        .btn-send { width: 100%; background: var(--whatsapp-glitch); color: #000; border: none; padding: 18px; font-family: var(--font-display); font-size: 22px; text-transform: uppercase; display: flex; justify-content: center; align-items: center; gap: 10px; cursor: pointer; box-shadow: 0 5px 15px rgba(37,211,102,0.2); }
     </style>
 </head>
 <body>
 
-    <!-- Marquee Banner Superior -->
+    <!-- Marquee Banner -->
     <div class="marquee-container">
         <div class="marquee-text">
-            MESA 04 • ARMÓNICA SHOP CAFE • SKATE & DESTROY • CRAFT BEER • NO RULES JUST FOOD • MESA 04 • ARMÓNICA SHOP CAFE • SKATE & DESTROY • CRAFT BEER • NO RULES JUST FOOD •
+            SISTEMA POS ACTIVO • ARMÓNICA SHOP CAFE • SKATE & DESTROY • MESA REQUIREDA • SISTEMA POS ACTIVO • ARMÓNICA SHOP CAFE • SKATE & DESTROY •
         </div>
     </div>
 
-    <!-- Header Masivo (Imagen Skater de Fondo) -->
+    <!-- Header Masivo -->
     <header class="brutal-header">
         <div class="halo-logo"><span>Λ</span></div>
         <h1>STREET<br><span class="highlight">FOOD</span></h1>
     </header>
 
-    <!-- Bento Box Gallery (Asimétrico) -->
+    <!-- Bento Box Gallery -->
     <section class="bento-grid">
-        <!-- 660293387: Session Spread -->
         <div class="bento-item large" style="background-image: url('images/660293387_18577577116013957_541881577953073017_n.jpg');">
             <div class="bento-overlay"><h2>THE SESSION</h2></div>
         </div>
-        <!-- 241544772: Burger -->
         <div class="bento-item square-left" style="background-image: url('images/241544772_212518797574755_1239604597614039167_n.jpg');">
             <div class="bento-overlay"><h2>BURGERS</h2></div>
         </div>
-        <!-- 440166777: Wings -->
         <div class="bento-item square-right" style="background-image: url('images/440166777_18429949339049351_6790974657106025786_n.jpg');">
             <div class="bento-overlay"><h2>WINGS</h2></div>
         </div>
@@ -297,136 +172,132 @@
     <!-- Lista de Menú Text-Only -->
     <main class="menu-list" id="menu-items-container"></main>
 
-    <!-- Comunidad y Resto de Imágenes -->
+    <!-- Comunidad -->
     <section class="community-zone">
-        <div class="comm-header">
-            <h2>THE CLAN</h2>
-            <p style="color: var(--text-muted); font-size: 13px;">Tap images to reveal colors</p>
-        </div>
-        <!-- 451986315: Ambiente 1 -->
+        <div class="comm-header"><h2>THE CLAN</h2></div>
         <div class="comm-img" style="background-image: url('images/451986315_18444537361049351_551687169489063687_n.jpg');"></div>
-        <!-- 472867054: Ambiente 2 -->
         <div class="comm-img" style="background-image: url('images/472867054_18477736027049351_386756570900074606_n.jpg');"></div>
-        <!-- 622458205: Community Break -->
         <div class="comm-img" style="grid-column: 1 / -1; height: 180px; background-image: url('images/622458205_18090453101062843_1247261381026766497_n.jpg');"></div>
-        
-        <a href="https://www.instagram.com/armonicashop_" target="_blank" class="btn-ig-brutal">
-            <i class="fa-brands fa-instagram"></i> @ARMONICASHOP_
-        </a>
+        <a href="https://www.instagram.com/armonicashop_" target="_blank" class="btn-ig-brutal"><i class="fa-brands fa-instagram"></i> @ARMONICASHOP_</a>
     </section>
 
     <!-- Cart Trigger -->
     <div class="cart-trigger" id="order-bar" onclick="toggleCart(true)">
-        <span><i class="fa-solid fa-bolt"></i> ORDEN</span>
+        <span><i class="fa-solid fa-bolt"></i> PROCESAR ORDEN</span>
         <div class="cart-badge" id="cart-badge">0</div>
     </div>
 
-    <!-- Cart Panel -->
+    <!-- Cart Panel Operativo -->
     <div class="cart-overlay" id="cart-overlay">
         <div class="cart-panel">
             <div class="cart-header">
-                <h2>COMANDA MESA 04</h2>
+                <h2>COMANDA INTERNA</h2>
                 <button class="btn-close" onclick="toggleCart(false)">&times;</button>
             </div>
-            <div class="cart-items" id="drawer-items"></div>
+            
+            <!-- Controles Anti-Troll -->
+            <div class="op-form-group">
+                <h4>1. VALIDACIÓN DE MESA (OBLIGATORIO)</h4>
+                <div style="display: flex; gap:10px;">
+                    <input type="text" id="table-id" class="brutal-input" placeholder="CÓDIGO MESA (Ej: 04)" style="flex:1;">
+                    <input type="text" id="waiter-name" class="brutal-input" placeholder="PERSONAL" style="flex:2;">
+                </div>
+            </div>
+
+            <!-- Items -->
+            <div class="op-form-group">
+                <h4>2. CONFIRMAR PRODUCTOS</h4>
+                <div class="cart-items" id="drawer-items"></div>
+            </div>
+
+            <!-- Propinas (Tip Protection) -->
+            <div class="op-form-group">
+                <h4>3. PROPINA (APOYA AL CLAN)</h4>
+                <div class="tip-selector">
+                    <button class="tip-pill active" onclick="setTip(0.10)" id="tip-10">10%</button>
+                    <button class="tip-pill" onclick="setTip(0.15)" id="tip-15">15%</button>
+                    <button class="tip-pill" onclick="setTip(0.20)" id="tip-20">20%</button>
+                    <button class="tip-pill" onclick="setTip(0)" id="tip-0">0%</button>
+                </div>
+            </div>
+
             <div class="cart-footer">
+                <div class="bill-breakdown">
+                    <span>SUBTOTAL:</span><span id="calc-subtotal">$0.00</span>
+                </div>
+                <div class="bill-breakdown">
+                    <span>PROPINA:</span><span id="calc-tip">$0.00</span>
+                </div>
                 <div class="c-total">
-                    <span>TOTAL:</span>
-                    <span class="val" id="total-amount">$0.00</span>
+                    <span>TOTAL:</span><span class="val" id="total-amount">$0.00</span>
                 </div>
                 <button class="btn-send" onclick="submitToWhatsApp()">
-                    <i class="fa-brands fa-whatsapp"></i> ENVIAR PEDIDO
+                    <i class="fa-brands fa-whatsapp"></i> GENERAR TICKET POS
                 </button>
             </div>
         </div>
     </div>
 
     <script>
+        // Sistema Base (Añadido parámetro "soldOut" para probar el backend Sheets simulado)
         const menuProducts = [
             // HAMBURGUESAS
-            { id: 1, name: "Slappy", category: "hamburguesas", price: 5.00, desc: "Queso hamburguesa 1/4 de libra." },
-            { id: 2, name: "Ollie 180", category: "hamburguesas", price: 6.00, desc: "Tapas de plátano, 1/4 de libra, bacon, queso." },
-            { id: 3, name: "Ollie 360", category: "hamburguesas", price: 7.00, desc: "1/4 de libra, queso, tomate, cebolla y lechuga." },
-            { id: 4, name: "Kick Flip", category: "hamburguesas", price: 7.00, desc: "1/4 de libra, queso, champiñones salteados, tomate, cebolla y lechuga." },
-            { id: 5, name: "Hard Flip", category: "hamburguesas", price: 8.00, desc: "1/4 de libra, queso, bacon, tomate, cebolla y lechuga." },
-            { id: 6, name: "Varial Flip", category: "hamburguesas", price: 8.00, desc: "1/4 de libra, queso, bacon, huevo, tomate, cebolla y lechuga." },
-            { id: 7, name: "Nollie Flip", category: "hamburguesas", price: 10.00, desc: "1/4 de libra, queso, bacon, guacamole, pico de gallo." },
-            { id: 8, name: "Heel Flip", category: "hamburguesas", price: 10.00, desc: "1/4 de libra, queso mozzarella, piña y alioli." },
-            { id: 9, name: "360 Flip", category: "hamburguesas", price: 10.00, desc: "1/4 de libra, queso, tajada, tomate, cebolla y lechuga." },
-            { id: 10, name: "Freestyle", category: "hamburguesas", price: 12.00, desc: "Doble 1/4 libra, queso, bacon, tomate, cebolla y lechuga." },
+            { id: 1, name: "Slappy", category: "hamburguesas", price: 5.00, desc: "Queso hamburguesa 1/4 de libra.", soldOut: false },
+            { id: 2, name: "Ollie 180", category: "hamburguesas", price: 6.00, desc: "Tapas de plátano, 1/4 de libra, bacon, queso.", soldOut: false },
+            { id: 10, name: "Freestyle", category: "hamburguesas", price: 12.00, desc: "Doble 1/4 libra, queso, bacon, tomate, cebolla y lechuga.", soldOut: false },
 
-            { id: 11, name: "Cinco Alitas", category: "wings", price: 5.00, desc: "5 piezas de alitas tradicionales crujientes." },
-            { id: 12, name: "Cinco Boneless", category: "wings", price: 6.99, desc: "5 jugosos trozos de pechuga deshuesada." },
-            { id: 13, name: "Diez Alitas", category: "wings", price: 10.00, desc: "10 alitas perfectas para la sesión." },
-            { id: 14, name: "Diez Boneless", category: "wings", price: 11.99, desc: "10 piezas de boneless listos para disfrutar." },
+            // WINGS & BONELESS
+            { id: 11, name: "Cinco Alitas", category: "wings", price: 5.00, desc: "5 piezas de alitas tradicionales crujientes.", soldOut: false },
+            { id: 14, name: "Diez Boneless", category: "wings", price: 11.99, desc: "10 piezas de boneless listos para disfrutar.", soldOut: false },
 
-            { id: 15, name: "Switch", category: "veggies", price: 8.00, desc: "Vegetariana de garbanzo, queso mozzarella, salsa alioli, mermelada de cebolla y onion strips." },
-            { id: 16, name: "Switch 360 Flip", category: "veggies", price: 12.00, desc: "Vegetariana de garbanzo, queso mozzarella, tomate y lechuga (Doble porción)." },
-            { id: 17, name: "Switch Heel", category: "veggies", price: 9.00, desc: "Vegetariana de garbanzo, queso mozzarella, tomate y lechuga." },
-            { id: 18, name: "Switch 180", category: "veggies", price: 5.00, desc: "Cinco falafel de garbanzo." },
-            { id: 19, name: "Switch 360", category: "veggies", price: 10.00, desc: "Diez falafel de garbanzo." },
+            // TRICKS (PAPAS)
+            { id: 20, name: "Papas Poser", category: "tricks", price: 3.50, desc: "Finas hierbas, sal y pimienta. ¡Las mejores papas!", soldOut: true }, // ESTADO AGOTADO
+            { id: 22, name: "Papas Pop", category: "tricks", price: 4.50, desc: "Finas hierbas, sal, pimienta y queso cheddar gratinado.", soldOut: false },
 
-            { id: 20, name: "Papas Poser", category: "tricks", price: 3.50, desc: "Finas hierbas, sal y pimienta. ¡Las mejores papas!" },
-            { id: 21, name: "Papas Pro", category: "tricks", price: 3.50, desc: "Canela, paprika, sal rosada del Himalaya." },
-            { id: 22, name: "Papas Pop", category: "tricks", price: 4.50, desc: "Finas hierbas, sal, pimienta y queso cheddar gratinado." },
-            { id: 23, name: "Imposible Papas", category: "tricks", price: 8.50, desc: "Salsa brava, guacamole, pico de gallo, queso cheddar gratinado, bacon." },
+            // COMPARTIR
+            { id: 25, name: "Wallie Nachos", category: "compartir", price: 10.00, desc: "Salsa brava, guacamole, pico de gallo, queso cheddar gratinado, bacon.", soldOut: false },
+            { id: 27, name: "Cheese Quesadilla", category: "compartir", price: 5.00, desc: "Queso cheddar, alioli.", soldOut: false },
 
-            { id: 24, name: "Copita de Patacón", category: "compartir", price: 5.00, desc: "4 cestas de patatón, alioli, pico de gallo, queso cheddar gratinado, bacon." },
-            { id: 25, name: "Wallie Nachos", category: "compartir", price: 10.00, desc: "Salsa brava, guacamole, pico de gallo, queso cheddar gratinado, bacon." },
-            { id: 26, name: "Wrap", category: "compartir", price: 7.00, desc: "Pollo, lechuga, tomate, mermelada de cebolla, queso cheddar, alioli. Con Papas Poser." },
-            { id: 27, name: "Cheese Quesadilla", category: "compartir", price: 5.00, desc: "Queso cheddar, alioli." },
-            { id: 28, name: "Quesadilla de Pollo", category: "compartir", price: 6.50, desc: "Queso cheddar, pollo, alioli." },
+            // CERVEZAS
+            { id: 29, name: "Nacionales", category: "cervezas", price: 2.00, desc: "Balboa Roja, Balboa Ice, Panamá, Panamá Light, Atlas Golden Light.", soldOut: false },
+            { id: 34, name: "Artesanales Locales", category: "cervezas", price: 5.00, desc: "Casa Bruja, Central, Mulata, Clandestina, La Murga.", soldOut: false },
+            { id: 37, name: "Tropper", category: "cervezas", price: 8.00, desc: "Cerveza especial Tropper de colección.", soldOut: true }, // ESTADO AGOTADO
 
-            { id: 29, name: "Nacionales", category: "cervezas", price: 2.00, desc: "Balboa Roja, Balboa Ice, Panamá, Panamá Light, Atlas Golden Light." },
-            { id: 30, name: "Importadas Básicas", category: "cervezas", price: 3.00, desc: "Budweiser, Miller Draft, Modelo, Michelob." },
-            { id: 31, name: "Importadas Premium A", category: "cervezas", price: 3.50, desc: "Corona, Polar, Quilmes." },
-            { id: 32, name: "Importadas Premium B", category: "cervezas", price: 4.00, desc: "BlueMoon, Estrella Damm, Estrella Galicia, Stella Artois, Daura Damm." },
-            { id: 33, name: "Importadas Premium C", category: "cervezas", price: 4.50, desc: "Voll Damm, Heineken." },
-            { id: 34, name: "Artesanales Locales", category: "cervezas", price: 5.00, desc: "Casa Bruja, Central, Mulata, Clandestina, La Murga, Cervecería Maestra." },
-            { id: 35, name: "Artesanales Especiales", category: "cervezas", price: 5.00, desc: "Honey Dew, Belhaven." },
-            { id: 36, name: "Fruli", category: "cervezas", price: 5.50, desc: "Cerveza premium Fruli." },
-            { id: 37, name: "Tropper", category: "cervezas", price: 8.00, desc: "Cerveza especial Tropper de colección." },
-
-            { id: 38, name: "Agua", category: "bebidas", price: 1.00, desc: "Botella de agua fría." },
-            { id: 39, name: "Soda / Té Lipton", category: "bebidas", price: 1.80, desc: "Lata de soda variada o Té Lipton frío." },
-            { id: 40, name: "Licuados de Frutas", category: "bebidas", price: 2.00, desc: "Licuados naturales refrescantes." },
-            { id: 41, name: "Batidos / Limonada", category: "bebidas", price: 2.50, desc: "Frutas naturales con agua o Limonada clásica." },
-            { id: 42, name: "Limonada Hierba Buena", category: "bebidas", price: 3.50, desc: "Limonada con hierba buena fresca o infusión helada." },
-            { id: 43, name: "Café Caliente", category: "bebidas", price: 2.50, desc: "Americano, Cappuccino, Latte o Vainilla." },
-            { id: 44, name: "Café Especial", category: "bebidas", price: 3.00, desc: "Café con leche de almendra o Chocolate caliente." },
-            { id: 45, name: "Moccachino", category: "bebidas", price: 3.50, desc: "Café espresso, leche y chocolate gourmet." }
+            // BEBIDAS
+            { id: 38, name: "Agua", category: "bebidas", price: 1.00, desc: "Botella de agua fría.", soldOut: false },
+            { id: 41, name: "Batidos / Limonada", category: "bebidas", price: 2.50, desc: "Frutas naturales con agua o Limonada clásica.", soldOut: false }
         ];
 
         let cart = [];
+        let currentTipPercent = 0.10;
 
         function renderMenu(products) {
             const container = document.getElementById('menu-items-container');
             container.innerHTML = '';
             
             products.forEach((p, index) => {
-                // Inyectamos la imagen Parallax (461050391) y la de cerveza (241736119) rompiendo la lista
-                if (index === 10 && products.length > 20) {
+                // Inyecciones Editoriales
+                if (index === 4 && products.length > 10) {
                     container.innerHTML += `
                     <div class="massive-break">
                         <h2>FEEL THE GRIND</h2>
                     </div>`;
                 }
-                if (index === 25 && products.length > 20) {
-                    container.innerHTML += `
-                    <div class="massive-break" style="background-image: url('images/241736119_1611137669093990_7420467522005539851_n.jpg'); margin-top: 40px;">
-                        <h2 style="transform: rotate(5deg); -webkit-text-stroke: 1px var(--skate-yellow);">LOCAL BREWS</h2>
-                    </div>`;
-                }
+
+                // Lógica UI de Agotado
+                const soldClass = p.soldOut ? 'sold-out' : '';
+                const btnAction = p.soldOut ? '' : `onclick="addToCart(${p.id})"`;
+                const priceLabel = p.soldOut ? `<div class="sold-badge">AGOTADO</div>` : `$${p.price.toFixed(2)}`;
 
                 container.innerHTML += `
-                    <div class="menu-row" style="animation-delay: ${index * 0.02}s">
+                    <div class="menu-row ${soldClass}" style="animation-delay: ${index * 0.02}s">
                         <div class="row-text">
                             <h3>${p.name}</h3>
                             <p>${p.desc}</p>
                         </div>
                         <div class="row-price-action">
-                            <span>$${p.price.toFixed(2)}</span>
-                            <button class="btn-cross" onclick="addToCart(${p.id})"><i class="fa-solid fa-plus"></i></button>
+                            <span>${priceLabel}</span>
+                            <button class="btn-cross" ${btnAction}><i class="fa-solid fa-plus"></i></button>
                         </div>
                     </div>
                 `;
@@ -436,10 +307,8 @@
         function filterCategory(cat) {
             document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
             event.target.classList.add('active');
-            
             const container = document.getElementById('menu-items-container');
             container.style.opacity = 0;
-            
             setTimeout(() => {
                 if (cat === 'todos') { renderMenu(menuProducts); } 
                 else { renderMenu(menuProducts.filter(p => p.category === cat)); }
@@ -449,6 +318,8 @@
 
         function addToCart(id) {
             const product = menuProducts.find(p => p.id === id);
+            if(product.soldOut) return; // Seguridad extra
+            
             const inCart = cart.find(item => item.id === id);
             if (inCart) { inCart.qty++; } else { cart.push({...product, qty: 1}); }
             updateUI();
@@ -459,6 +330,13 @@
             if (!item) return;
             item.qty += amount;
             if (item.qty <= 0) cart = cart.filter(p => p.id !== id);
+            updateUI();
+        }
+
+        function setTip(percent) {
+            currentTipPercent = percent;
+            document.querySelectorAll('.tip-pill').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
             updateUI();
         }
 
@@ -473,11 +351,11 @@
 
             const body = document.getElementById('drawer-items');
             body.innerHTML = '';
-            let total = 0;
+            let subtotal = 0;
 
             cart.forEach(i => {
                 const sub = i.price * i.qty;
-                total += sub;
+                subtotal += sub;
                 body.innerHTML += `
                     <div class="c-item">
                         <div class="c-info">
@@ -492,6 +370,12 @@
                     </div>
                 `;
             });
+
+            const tipAmount = subtotal * currentTipPercent;
+            const total = subtotal + tipAmount;
+
+            document.getElementById('calc-subtotal').innerText = `$${subtotal.toFixed(2)}`;
+            document.getElementById('calc-tip').innerText = `$${tipAmount.toFixed(2)}`;
             document.getElementById('total-amount').innerText = `$${total.toFixed(2)}`;
         }
 
@@ -507,18 +391,40 @@
         }
 
         function submitToWhatsApp() {
+            const tableId = document.getElementById('table-id').value.trim();
+            const waiter = document.getElementById('waiter-name').value.trim();
+
+            if(!tableId || !waiter) {
+                alert("SISTEMA: Por favor ingresa el Código de Mesa y Quién atiende.");
+                return;
+            }
             if(cart.length === 0) return;
-            let msg = "🛹 *ARMÓNICA SHOP CAFE - RAW COMANDA* 🛹\n";
-            msg += "📍 *Mesa:* 04\n=========================\n";
-            let total = 0;
+
+            // Generar ID de Orden Ticket POS
+            const orderId = '#ARM-' + Math.floor(1000 + Math.random() * 9000);
+            
+            let subtotal = 0;
+            cart.forEach(i => subtotal += (i.price * i.qty));
+            let tipAmount = subtotal * currentTipPercent;
+            let total = subtotal + tipAmount;
+
+            let msg = `🧾 *TICKET POS: ${orderId}* 🧾\n`;
+            msg += `📍 *MESA:* ${tableId.toUpperCase()}\n`;
+            msg += `👤 *ATIENDE:* ${waiter.toUpperCase()}\n`;
+            msg += "=========================\n";
+            
             cart.forEach(i => {
                 const sub = i.price * i.qty;
-                total += sub;
                 msg += `• *${i.qty}x* ${i.name} -> _$${sub.toFixed(2)}_\n`;
             });
+            
+            msg += "-------------------------\n";
+            msg += `Subtotal: $${subtotal.toFixed(2)}\n`;
+            msg += `Propina (${currentTipPercent * 100}%): $${tipAmount.toFixed(2)}\n`;
             msg += "=========================\n";
-            msg += `💰 *TOTAL CUENTA:* $${total.toFixed(2)}\n\n`;
-            msg += "📱 _Enviado vía brutalist UI._";
+            msg += `💰 *TOTAL A COBRAR:* $${total.toFixed(2)}\n\n`;
+            msg += "💻 _Enviado desde el Gestor de Comandas Digital_";
+
             window.open(`https://wa.me/50760000000?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
