@@ -3,65 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nativa Bistro - Menú Interactivo</title>
+    <title>Street Bites - Menú Interactivo</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Iconos limpios -->
+    <!-- Iconos para la vibra urbana -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Encabezado / Logo -->
-    <header class="header">
-        <div class="logo-container">
-            <span class="logo-icon">🌿</span>
-            <h1>Nativa <span class="accent">Bistro</span></h1>
-        </div>
-        <p class="subtitle">Comida real • Mesa 04</p>
+    <!-- Encabezado Urbano (Estilo Skate/Street) -->
+    <header class="urban-header">
+        <div class="brand-badge">STREET DECK</div>
+        <h1>BURGDERS, WINGS <span class="highlight">& TRICKS</span></h1>
+        <p class="table-indicator"><i class="fa-solid fa-location-dot"></i> Pedidos desde la Mesa 04</p>
     </header>
 
-    <!-- Barra de Categorías Fija -->
-    <nav class="categories-nav">
-        <button class="cat-btn active" onclick="filterCategory('todos')">Todos</button>
-        <button class="cat-btn" onclick="filterCategory('bowls')">Bowls</button>
-        <button class="cat-btn" onclick="filterCategory('wraps')">Wraps & Subs</button>
-        <button class="cat-btn" onclick="filterCategory('bebidas')">Bebidas</button>
+    <!-- Barra Navegación de Categorías (Fija al hacer Scroll) -->
+    <nav class="categories-slider">
+        <button class="tab-btn active" onclick="filterCategory('todos')">Todo el Menú</button>
+        <button class="tab-btn" onclick="filterCategory('burgers')">Burgers</button>
+        <button class="tab-btn" onclick="filterCategory('wings')">Wings & Boneless</button>
+        <button class="tab-btn" onclick="filterCategory('veggies')">Veggies</button>
+        <button class="tab-btn" onclick="filterCategory('tricks')">Tricks (Papas)</button>
+        <button class="tab-btn" onclick="filterCategory('snacks')">Snacks</button>
+        <button class="tab-btn" onclick="filterCategory('drinks')">Drinks</button>
     </nav>
 
-    <!-- Contenedor de Platos -->
-    <main class="menu-container" id="menu-grid">
-        <!-- Los platos se inyectarán dinámicamente con JavaScript -->
+    <!-- Grilla Principal del Menú -->
+    <main class="menu-grid" id="menu-items-container">
+        <!-- Los productos urbanos se inyectarán dinámicamente mediante JavaScript -->
     </main>
 
-    <!-- Botón Flotante del Carrito -->
-    <div class="floating-cart" id="floating-cart" onclick="toggleCartModal(true)">
-        <i class="fa-solid fa-basket-shopping"></i>
-        <span class="cart-count" id="cart-count">0</span>
+    <!-- Botón Flotante del Carrito Estilo Urbano -->
+    <div class="cart-trigger" id="cart-trigger" onclick="toggleCart(true)">
+        <div class="badge-count" id="cart-badge">0</div>
+        <i class="fa-solid fa-fire"></i>
+        <span>REVISAR ORDEN</span>
     </div>
 
-    <!-- Modal del Carrito -->
-    <div class="cart-modal" id="cart-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Tu Pedido</h2>
-                <button class="close-btn" onclick="toggleCartModal(false)">&times;</button>
+    <!-- Ventana Modal del Carrito (Desliza desde abajo) -->
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="drawer-surface">
+            <div class="drawer-header">
+                <h2><i class="fa-solid fa-list-check"></i> Tu Comanda</h2>
+                <button class="drawer-close" onclick="toggleCart(false)">&times;</button>
             </div>
             
-            <div class="cart-items" id="cart-items">
-                <!-- Items del carrito inyectados por JS -->
+            <!-- Items de la Orden -->
+            <div class="drawer-body" id="drawer-items">
+                <!-- Inyección vía JS -->
             </div>
 
-            <div class="modal-footer">
-                <div class="total-container">
-                    <span>Total estimado:</span>
-                    <span class="total-price" id="total-price">$0.00</span>
+            <!-- Footer con totales y botón de acción masiva -->
+            <div class="drawer-footer">
+                <div class="summary-line">
+                    <span>Subtotal:</span>
+                    <span class="price-total" id="total-amount">$0.00</span>
                 </div>
-                <button class="whatsapp-btn" onclick="sendOrderWhatsApp()">
-                    <i class="fa-brands fa-whatsapp"></i> Confirmar y Enviar Pedido
+                <button class="btn-whatsapp-send" onclick="submitToWhatsApp()">
+                    <i class="fa-brands fa-whatsapp"></i> ENVIAR COMANDA A COCINA
                 </button>
             </div>
         </div>
     </div>
 
-    <script href="script.js" src="script.js"></script>
+    <!-- Enlace al archivo lógico -->
+    <script src="script.js"></script>
 </body>
 </html>
