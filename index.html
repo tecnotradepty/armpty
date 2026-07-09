@@ -3,21 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Armónica Proyect - Anti-Grid Experience</title>
-    <!-- Iconos y Fuentes Brutalistas -->
+    <title>Armónica - Chalk & Text Menu</title>
+    <!-- Fuentes y Recursos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-asphalt: #0d0d0d;      /* Negro asfalto puro */
-            --concrete-grey: #181818;   /* Cemento profundo */
-            --grunge-border: #2a2a2a;   /* Bordes de acero rústico */
-            --neon-strobe: #ffffff;     /* Brillo blanco del logo */
-            --skate-fire: #ffcc00;      /* Amarillo señal / Grafiti */
+            --bg-chalkboard: #111111;   /* Fondo oscuro estilo pizarra */
+            --surface-panel: #0a0a0a;
+            --chalk-line: #333333;      /* Líneas divisorias sutiles */
+            --neon-white: #ffffff;      
+            --skate-fire: #ffcc00;      /* Amarillo característico */
             --text-raw: #f5f5f5;
-            --text-dark: #000000;
-            --muted-iron: #555555;
+            --text-dim: #888888;
             --whatsapp-glitch: #25d366;
             --font-heavy: 'Anton', sans-serif;
             --font-street: 'Space Grotesk', sans-serif;
@@ -32,596 +31,457 @@
         }
 
         body {
-            background-color: var(--bg-asphalt);
+            background-color: var(--bg-chalkboard);
             color: var(--text-raw);
             padding-bottom: 130px;
             overflow-x: hidden;
             
-            /* DISEÑO GRÁFICO: Fondo texturizado complejo de alta costura callejera */
+            /* Textura sutil de pizarra manchada */
             background-image: 
-                radial-gradient(circle at 20% 30%, rgba(255, 204, 0, 0.03) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.02) 0%, transparent 40%),
-                linear-gradient(45deg, #050505 25%, transparent 25%, transparent 75%, #050505 75%, #050505),
-                linear-gradient(45deg, #050505 25%, transparent 25%, transparent 75%, #050505 75%, #050505);
-            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
-            background-position: 0 0, 0 0, 0 0, 20px 20px;
+                radial-gradient(circle at 50% 50%, rgba(255,255,255,0.02) 0%, transparent 80%),
+                linear-gradient(rgba(255,255,255,0.01) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px);
+            background-size: 100% 100%, 20px 20px, 20px 20px;
         }
 
-        /* --- VANDAL HEADER --- */
-        .vandal-header {
-            background: #000000;
-            padding: 60px 20px 40px 20px;
-            text-align: center;
+        /* --- EDITORIAL HEADER --- */
+        .editorial-header {
             position: relative;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.8);
-            overflow: hidden;
-        }
-        
-        /* Efecto de fondo rasgado / textura de cinta en el header */
-        .vandal-header::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0; width: 100%; height: 8px;
-            background: repeating-linear-gradient(-45deg, var(--text-dark), var(--text-dark) 12px, var(--skate-fire) 12px, var(--skate-fire) 24px);
+            padding: 70px 20px 40px 20px;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+            /* Usando imagen de skater de fondo con degradado oscuro pesado */
+            background-image: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(17,17,17,1) 100%), url('images/572870465_18535539187049351_874623045953735305_n.jpg');
+            border-bottom: 2px solid var(--chalk-line);
         }
 
         .halo-logo {
-            width: 90px;
-            height: 90px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            border: 4px solid var(--neon-strobe);
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3), inset 0 0 20px rgba(255,255,255,0.2);
-            margin: 0 auto 25px auto;
+            border: 3px solid var(--neon-white);
+            margin: 0 auto 20px auto;
             display: flex;
             align-items: center;
             justify-content: center;
             background-color: #000;
-            transform: rotate(-3deg);
-            transition: transform 0.3s ease;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
         }
-        .halo-logo:active { transform: scale(1.1) rotate(5deg); }
         .halo-logo span {
             font-family: var(--font-heavy);
-            font-size: 58px;
-            color: var(--neon-strobe);
+            font-size: 50px;
+            color: var(--neon-white);
             line-height: 1;
-            margin-top: -8px;
+            margin-top: -6px;
         }
 
-        /* Títulos masivos con textura interna */
-        .vandal-header h1 {
+        .editorial-header h1 {
             font-family: var(--font-heavy);
-            font-size: 46px;
-            letter-spacing: -1px;
+            font-size: 42px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            line-height: 0.85;
+            line-height: 0.9;
             color: var(--text-raw);
         }
-        .vandal-header h1 span {
+        .editorial-header h1 span {
             color: var(--skate-fire);
-            font-size: 52px;
+            font-size: 46px;
             display: block;
-            text-shadow: 3px 3px 0px #000;
         }
-
-        .sticker-badge {
-            font-size: 11px;
+        .table-tag {
+            font-size: 12px;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--text-dark);
-            background-color: var(--text-raw);
-            padding: 5px 16px;
+            letter-spacing: 4px;
+            color: var(--skate-fire);
+            margin-top: 15px;
             font-weight: 700;
-            display: inline-flex;
-            margin-top: 20px;
-            transform: rotate(2.5deg);
-            box-shadow: 4px 4px 0px var(--skate-fire);
         }
 
-        /* --- FLYERS ASIMÉTRICOS (PROMOS) --- */
-        .flyer-magazine-rack {
-            padding: 25px 15px 15px 15px;
+        /* --- POLAROID / TAPE PROMO BANNERS --- */
+        .photo-gallery-slider {
+            padding: 25px 20px;
             display: flex;
-            gap: 16px;
+            gap: 20px;
             overflow-x: auto;
             scrollbar-width: none;
         }
-        .flyer-magazine-rack::-webkit-scrollbar { display: none; }
+        .photo-gallery-slider::-webkit-scrollbar { display: none; }
         
-        .grunge-flyer {
-            min-width: 290px;
-            height: 160px;
+        .taped-photo {
+            min-width: 280px;
+            height: 180px;
             background-size: cover;
             background-position: center;
             position: relative;
-            border: 2px solid var(--text-raw);
-            box-shadow: 8px 8px 0px #000;
+            border: 8px solid #fff; /* Borde tipo polaroid/foto impresa */
+            box-shadow: 5px 10px 20px rgba(0,0,0,0.8);
             display: flex;
             align-items: flex-end;
-            padding: 20px;
-            transition: all 0.25s ease;
+            transform: rotate(-2deg);
+            transition: transform 0.3s ease;
         }
-        /* Rotación alterna para dar el look "tirado en una mesa" */
-        .grunge-flyer:nth-child(odd) { transform: rotate(-1.5deg); }
-        .grunge-flyer:nth-child(even) { transform: rotate(1.5deg); }
-        .grunge-flyer:active { transform: scale(0.98) rotate(0deg); }
+        .taped-photo:nth-child(even) { transform: rotate(2deg); }
+        .taped-photo:active { transform: scale(0.98) rotate(0deg); }
 
-        .flyer-tint {
+        /* Efecto de cinta adhesiva translúcida en la parte superior */
+        .tape-piece {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 100%);
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-4deg);
+            width: 80px;
+            height: 25px;
+            background-color: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(2px);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            z-index: 5;
         }
-        .flyer-data { z-index: 2; position: relative; }
-        .flyer-data h2 {
-            font-family: var(--font-heavy);
-            font-size: 24px;
-            color: var(--skate-fire);
-            line-height: 1;
-            text-shadow: 2px 2px 0px #000;
-        }
-        .flyer-data p { font-size: 11px; font-weight: 700; letter-spacing: 0.5px; }
 
-        /* --- CATEGORÍAS TIPO STENCIL --- */
-        .stencil-categories {
+        .photo-caption {
+            width: 100%;
+            padding: 10px;
+            background: #fff;
+            color: #000;
+            text-align: center;
+        }
+        .photo-caption h2 {
+            font-family: var(--font-heavy);
+            font-size: 20px;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        /* --- TEXT-FOCUSED CATEGORIES --- */
+        .clean-categories {
             display: flex;
-            gap: 10px;
-            padding: 20px 15px;
-            background: rgba(0, 0, 0, 0.85);
+            gap: 15px;
+            padding: 20px;
+            background: rgba(17, 17, 17, 0.95);
             position: sticky;
             top: 0;
             z-index: 10;
             overflow-x: auto;
             scrollbar-width: none;
-            border-bottom: 2px solid var(--grunge-border);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid var(--chalk-line);
+            border-bottom: 1px solid var(--chalk-line);
+            backdrop-filter: blur(10px);
         }
-        .stencil-categories::-webkit-scrollbar { display: none; }
+        .clean-categories::-webkit-scrollbar { display: none; }
 
-        .stencil-tab {
-            background: #111;
-            border: 2px solid var(--grunge-border);
-            color: var(--muted-iron);
-            padding: 12px 24px;
+        .text-tab {
+            background: transparent;
+            border: none;
+            color: var(--text-dim);
             font-family: var(--font-heavy);
             font-size: 18px;
             letter-spacing: 1px;
             text-transform: uppercase;
             cursor: pointer;
-            transition: all 0.2s ease;
+            white-space: nowrap;
+            position: relative;
+            padding-bottom: 5px;
+            transition: color 0.2s ease;
         }
-        .stencil-tab.active {
+        .text-tab.active {
+            color: var(--skate-fire);
+        }
+        .text-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 3px;
             background-color: var(--skate-fire);
-            color: var(--text-dark);
-            border-color: var(--skate-fire);
-            box-shadow: 5px 5px 0px var(--text-raw);
-            transform: translateY(-3px) rotate(-1deg);
         }
 
-        /* --- ANTI-GRID COLLAGE (MENU) --- */
-        .collage-container {
-            padding: 30px 15px;
+        /* --- TEXT-ONLY MENU LIST --- */
+        .menu-list-container {
+            padding: 10px 20px 30px 20px;
             display: flex;
             flex-direction: column;
-            gap: 24px; /* Layout vertical asimétrico tipo fanzine */
         }
 
-        .collage-card {
-            background: var(--concrete-grey);
-            border: 2px solid var(--grunge-border);
+        .menu-row {
             display: flex;
-            height: 130px;
-            position: relative;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px dashed var(--chalk-line);
             opacity: 0;
-            transform: scale(0.95);
-            animation: fanzineReveal 0.35s forwards cubic-bezier(0.175, 0.885, 0.32, 1.2);
+            transform: translateY(10px);
+            animation: textReveal 0.3s forwards ease;
         }
-        @keyframes fanzineReveal { to { opacity: 1; transform: scale(1); } }
+        @keyframes textReveal { to { opacity: 1; transform: translateY(0); } }
 
-        /* Alternamos la dirección del contenido y la inclinación de forma asimétrica */
-        .collage-card:nth-child(even) {
-            flex-direction: row-reverse;
-            transform: rotate(1deg);
-            border-left: 4px solid var(--skate-fire);
+        .row-info {
+            width: 75%;
+            padding-right: 15px;
         }
-        .collage-card:nth-child(odd) {
-            transform: rotate(-1deg);
-            border-right: 4px solid var(--neon-white);
+        .row-info h3 {
+            font-family: var(--font-heavy);
+            font-size: 22px;
+            letter-spacing: 0.5px;
+            color: var(--text-raw);
+            text-transform: uppercase;
+            margin-bottom: 4px;
         }
-        .collage-card:active {
-            border-color: var(--skate-fire) !important;
-            transform: scale(0.98) rotate(0deg) !important;
+        .row-info p {
+            font-size: 13px;
+            color: var(--text-dim);
+            line-height: 1.4;
         }
 
-        /* Contenedor del icono/gráfico de la tarjeta */
-        .collage-visual {
-            width: 35%;
-            background: radial-gradient(circle, #222 0%, #050505 100%);
+        .row-action {
+            width: 25%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+        }
+        .row-action .price {
+            font-family: var(--font-heavy);
+            font-size: 20px;
+            color: var(--skate-fire);
+        }
+        .btn-add-minimal {
+            background: transparent;
+            color: var(--text-raw);
+            border: 1px solid var(--text-raw);
+            width: 32px; height: 32px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-add-minimal:active {
+            background: var(--skate-fire);
+            color: #000;
+            border-color: var(--skate-fire);
+        }
+
+        /* --- MID-MENU EDITORIAL BREAK --- */
+        .editorial-break {
+            width: 100%;
+            height: 200px;
+            margin: 20px 0;
+            background-size: cover;
+            background-position: center;
+            border-top: 2px solid var(--chalk-line);
+            border-bottom: 2px solid var(--chalk-line);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 46px;
             position: relative;
-            overflow: hidden;
         }
-        .collage-visual::after {
+        /* Máscara oscura para que resalte un texto encima si se desea */
+        .editorial-break::before {
             content: ''; position: absolute; width: 100%; height: 100%;
-            background-image: linear-gradient(rgba(255,255,255,0.01) 1px, transparent 1px);
-            background-size: 8px 8px;
+            background: rgba(0,0,0,0.3);
         }
 
-        .collage-details {
-            width: 65%;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            background: #090909;
-        }
-        .collage-details h3 {
-            font-family: var(--font-heavy);
-            font-size: 20px;
-            text-transform: uppercase;
-            color: var(--text-raw);
-            line-height: 1;
-        }
-        .collage-desc {
-            font-size: 11px;
-            color: #666;
-            line-height: 1.3;
-            margin: 4px 0;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        .collage-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .collage-price {
-            font-family: var(--font-heavy);
-            color: var(--skate-fire);
-            font-size: 24px;
-        }
-        
-        .btn-add-tag {
-            background: transparent;
-            color: var(--text-raw);
-            border: 2px solid var(--text-raw);
-            padding: 2px 14px;
-            font-family: var(--font-heavy);
-            font-size: 15px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.15s ease;
-        }
-        .btn-add-tag:active {
-            background-color: var(--skate-fire);
-            color: var(--text-dark);
-            border-color: var(--skate-fire);
-        }
-
-        /* --- CLAN COMMUNITY SECT (INSTAGRAM) --- */
-        .clan-mural {
-            padding: 40px 15px;
-            background: #000000;
-            border-top: 3px solid var(--grunge-border);
+        /* --- COMMUNITY SECTION --- */
+        .community-block {
+            padding: 40px 20px;
             text-align: center;
-            position: relative;
+            background: #050505;
         }
-        .clan-mural h2 {
+        .community-block h2 {
             font-family: var(--font-heavy);
             font-size: 32px;
             text-transform: uppercase;
-            margin-bottom: 20px;
-            letter-spacing: -0.5px;
+            margin-bottom: 25px;
         }
-        .sticker-link-ig {
+        .ig-link {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            background-color: var(--neon-white);
-            color: var(--text-dark);
-            text-decoration: none;
-            padding: 14px 28px;
+            gap: 10px;
+            background-color: transparent;
+            color: var(--skate-fire);
+            border: 2px solid var(--skate-fire);
+            padding: 12px 24px;
             font-family: var(--font-heavy);
-            font-size: 20px;
+            font-size: 18px;
             text-transform: uppercase;
-            box-shadow: 6px 6px 0px var(--skate-fire);
+            text-decoration: none;
             margin-bottom: 30px;
-            transform: rotate(-1deg);
         }
         
-        /* Mosaico de fotos reales con filtros rústicos intensos */
-        .grid-mosaic-grunge {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-        .sticker-photo {
-            width: 100%;
-            height: 140px;
-            border: 2px solid var(--grunge-border);
-            background-size: cover;
-            background-position: center;
-            filter: grayscale(40%) contrast(120%) brightness(90%);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .sticker-photo:nth-child(1) { transform: rotate(-2deg); border-color: var(--skate-fire); }
-        .sticker-photo:nth-child(2) { transform: rotate(2deg); border-color: var(--neon-white); }
-        .sticker-photo:active {
-            filter: grayscale(0%) contrast(100%) brightness(100%);
-            transform: scale(1.03) rotate(0deg);
-            z-index: 5;
-        }
-
-        /* --- FLOATING COMMAND DESK --- */
+        /* --- FLOATING CONSOLE & DRAWER (Mantenido intacto) --- */
         .floating-desk-bar {
-            position: fixed;
-            bottom: 25px; left: 15px; right: 15px;
-            background-color: var(--skate-fire);
-            color: var(--text-dark);
-            padding: 18px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: 0 20px 45px rgba(0,0,0,0.9);
-            z-index: 20;
-            transform: translateY(160%);
-            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.3);
+            position: fixed; bottom: 25px; left: 15px; right: 15px;
+            background-color: var(--skate-fire); color: #000;
+            padding: 18px 24px; display: flex; justify-content: space-between; align-items: center;
+            cursor: pointer; box-shadow: 0 20px 45px rgba(0,0,0,0.9); z-index: 20;
+            transform: translateY(160%); transition: transform 0.4s ease;
         }
         .floating-desk-bar.visible { transform: translateY(0); }
-        .floating-desk-bar.pulse-glow { animation: rawGlow 1.8s infinite alternate; }
-        @keyframes rawGlow {
-            0% { box-shadow: 0 20px 45px rgba(0,0,0,0.9); }
-            100% { box-shadow: 0 0 30px rgba(255, 204, 0, 0.8); }
-        }
-        .floating-desk-bar span {
-            font-family: var(--font-heavy);
-            font-size: 20px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-        .raw-badge {
-            background-color: var(--text-dark);
-            color: var(--text-raw);
-            font-family: var(--font-heavy);
-            font-size: 16px;
-            padding: 2px 12px;
-            box-shadow: 3px 3px 0px var(--text-raw);
-        }
+        .floating-desk-bar span { font-family: var(--font-heavy); font-size: 20px; letter-spacing: 0.5px; text-transform: uppercase; }
+        .raw-badge { background-color: #000; color: var(--text-raw); font-family: var(--font-heavy); font-size: 16px; padding: 2px 12px; }
 
-        /* --- OVERLAY CONSOLE (CARRITO) --- */
         .console-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.96);
-            z-index: 30;
-            display: none;
-            align-items: flex-end;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.96); z-index: 30; display: none; align-items: flex-end;
         }
         .console-panel {
-            background-color: #050505;
-            width: 100%;
-            max-height: 85vh;
-            border-top: 4px solid var(--skate-fire);
-            display: flex;
-            flex-direction: column;
-            padding: 24px;
-            transform: translateY(100%);
-            transition: transform 0.3s cubic-bezier(0.1, 0.8, 0.3, 1);
+            background-color: #050505; width: 100%; max-height: 85vh;
+            border-top: 4px solid var(--skate-fire); display: flex; flex-direction: column; padding: 24px;
+            transform: translateY(100%); transition: transform 0.3s ease;
         }
         .console-overlay.active .console-panel { transform: translateY(0); }
-        
-        .console-title-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            border-bottom: 2px solid var(--grunge-border);
-            padding-bottom: 12px;
-        }
-        .console-title-bar h2 {
-            font-family: var(--font-heavy);
-            font-size: 26px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+        .console-title-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 2px solid var(--chalk-line); padding-bottom: 12px; }
+        .console-title-bar h2 { font-family: var(--font-heavy); font-size: 26px; text-transform: uppercase; }
         .btn-abort-console { background: none; border: none; color: #444; font-size: 38px; cursor: pointer; }
 
         .console-rows { overflow-y: auto; flex-grow: 1; }
-        .console-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 16px 0;
-            border-bottom: 1px solid #111;
-        }
+        .console-row { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid #111; }
         .row-data h4 { font-family: var(--font-heavy); font-size: 18px; text-transform: uppercase; }
         .row-data span { font-size: 13px; color: var(--skate-fire); font-weight: 700; }
         .row-triggers { display: flex; align-items: center; gap: 14px; }
-        .btn-qty-trigger { background: #111; border: 1px solid var(--grunge-border); color: #fff; width: 34px; height: 34px; font-weight: bold; cursor: pointer; }
-        .btn-qty-trigger:active { background-color: var(--skate-fire); color: #000; }
+        .btn-qty-trigger { background: #111; border: 1px solid var(--chalk-line); color: #fff; width: 34px; height: 34px; font-weight: bold; cursor: pointer; }
         .qty-val { font-family: var(--font-heavy); font-size: 20px; min-width: 20px; text-align: center; }
 
         .console-footer { margin-top: auto; padding-top: 20px; }
-        .total-bill-row {
-            display: flex;
-            justify-content: space-between;
-            font-family: var(--font-heavy);
-            font-size: 24px;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-        }
-        .total-bill-row .val { color: var(--skate-fire); font-size: 30px; text-shadow: 2px 2px 0px #000; }
-        
-        .btn-push-kitchen {
-            width: 100%;
-            background-color: var(--whatsapp-glitch);
-            color: white;
-            border: none;
-            padding: 20px;
-            font-family: var(--font-heavy);
-            font-size: 22px;
-            letter-spacing: 1px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            text-transform: uppercase;
-            box-shadow: 0 4px 25px rgba(37, 211, 102, 0.4);
-        }
+        .total-bill-row { display: flex; justify-content: space-between; font-family: var(--font-heavy); font-size: 24px; margin-bottom: 25px; text-transform: uppercase; }
+        .total-bill-row .val { color: var(--skate-fire); font-size: 30px; }
+        .btn-push-kitchen { width: 100%; background-color: var(--whatsapp-glitch); color: white; border: none; padding: 20px; font-family: var(--font-heavy); font-size: 22px; display: flex; justify-content: center; align-items: center; gap: 12px; cursor: pointer; text-transform: uppercase; }
     </style>
 </head>
 <body>
 
-    <!-- Header / Identidad Gráfica Urbana -->
-    <header class="vandal-header">
+    <!-- Header Texturizado (Skater Background) -->
+    <header class="editorial-header">
         <div class="halo-logo">
             <span>Λ</span>
         </div>
         <h1>HAMBURGUESAS, WINGS <span>& TRICKS</span></h1>
-        <div class="sticker-badge">
-            <i class="fa-solid fa-skull"></i> ANTI-GRID FLOW • MESA 04
-        </div>
+        <div class="table-tag">MESA 04 / GOTHIC FLOW</div>
     </header>
 
-    <!-- Flyers Asimétricos / Promos (Usando tus fotos reales de GitHub) -->
-    <section class="flyer-magazine-rack">
-        <div class="grunge-flyer" style="background-image: url('images/241736119_1611137669093990_7420467522005539851_n.jpg');">
-            <div class="flyer-tint"></div>
-            <div class="flyer-data">
-                <h2>TRICKS & CRAFT BEER</h2>
-                <p>Las Burgers de 1/4 con tu pinta local[cite: 1]</p>
+    <!-- Galería Promo Estilo Polaroid/Tape -->
+    <section class="photo-gallery-slider">
+        <!-- Burger Image -->
+        <div class="taped-photo" style="background-image: url('images/241544772_212518797574755_1239604597614039167_n.jpg');">
+            <div class="tape-piece"></div>
+            <div class="photo-caption">
+                <h2>OUR BURGERS</h2>
             </div>
         </div>
-        <div class="grunge-flyer" style="background-image: url('images/440166777_18429949339049351_6790974657106025786_n.jpg');">
-            <div class="flyer-tint"></div>
-            <div class="flyer-data">
-                <h2>WINGS & BONELESS</h2>
-                <p>Crujientes para aguantar la sesión[cite: 1]</p>
+        <!-- Table Spread Image -->
+        <div class="taped-photo" style="background-image: url('images/660293387_18577577116013957_541881577953073017_n.jpg');">
+            <div class="tape-piece"></div>
+            <div class="photo-caption">
+                <h2>THE SESSION</h2>
             </div>
         </div>
     </section>
 
-    <!-- Categorías Tipo Letrero Stencil -->
-    <nav class="stencil-categories">
-        <button class="stencil-tab active" onclick="filterCategory('todos')">All Items</button>
-        <button class="stencil-tab" onclick="filterCategory('hamburguesas')">Hamburguesas</button>
-        <button class="stencil-tab" onclick="filterCategory('wings')">Wings & Boneless</button>
-        <button class="stencil-tab" onclick="filterCategory('veggies')">Veggies</button>
-        <button class="stencil-tab" onclick="filterCategory('tricks')">Tricks</button>
-        <button class="stencil-tab" onclick="filterCategory('compartir')">Compartir</button>
-        <button class="stencil-tab" onclick="filterCategory('cervezas')">Cervezas</button>
-        <button class="stencil-tab" onclick="filterCategory('bebidas')">Bebidas</button>
+    <!-- Pestañas de Solo Texto -->
+    <nav class="clean-categories">
+        <button class="text-tab active" onclick="filterCategory('todos')">Todo</button>
+        <button class="text-tab" onclick="filterCategory('hamburguesas')">Burgers</button>
+        <button class="text-tab" onclick="filterCategory('wings')">Wings</button>
+        <button class="text-tab" onclick="filterCategory('veggies')">Veggies</button>
+        <button class="text-tab" onclick="filterCategory('tricks')">Tricks</button>
+        <button class="text-tab" onclick="filterCategory('compartir')">Compartir</button>
+        <button class="text-tab" onclick="filterCategory('cervezas')">Cervezas</button>
+        <button class="text-tab" onclick="filterCategory('bebidas')">Bebidas</button>
     </nav>
 
-    <!-- Contenedor Asimétrico Anti-Grid -->
-    <main class="collage-container" id="menu-items-container"></main>
+    <!-- Contenedor Principal de la Lista -->
+    <div id="dynamic-menu-wrapper">
+        <!-- El bloque intermedio de imagen (Skateboard con comida) se inyectará dinámicamente -->
+        <main class="menu-list-container" id="menu-items-container"></main>
+    </div>
 
-    <!-- Mural de Comunidad (Instagram Oficial + Tus Fotos de Ambiente) -->
-    <section class="clan-mural">
-        <h2>THE ARMONICA CLAN</h2>
-        <a href="https://www.instagram.com/armonicashop_" target="_blank" class="sticker-link-ig">
+    <!-- Sección Comunidad (Cerveza y Link) -->
+    <section class="community-block">
+        <h2>JOIN THE CLAN</h2>
+        <a href="https://www.instagram.com/armonicashop_" target="_blank" class="ig-link">
             <i class="fa-brands fa-instagram"></i> @armonicashop_
         </a>
-        <div class="grid-mosaic-grunge">
-            <div class="sticker-photo" style="background-image: url('images/451986315_18444537361049351_551687169489063687_n.jpg');"></div>
-            <div class="sticker-photo" style="background-image: url('images/472867054_18477736027049351_386756570900074606_n.jpg');"></div>
-        </div>
+        <div class="editorial-break" style="background-image: url('images/622458205_18090453101062843_1247261381026766497_n.jpg');"></div>
     </section>
 
-    <!-- Consola de Comanda Inferior -->
+    <!-- Consola Flotante -->
     <div class="floating-desk-bar" id="order-bar" onclick="toggleConsole(true)">
-        <span><i class="fa-solid fa-bolt-lightning"></i> CHECK MY COMMANDA</span>
+        <span><i class="fa-solid fa-bolt"></i> MI ORDEN</span>
         <mark class="raw-badge" id="cart-badge">0</mark>
     </div>
 
-    <!-- Consola del Carrito (Overlay Total) -->
+    <!-- Panel de Carrito -->
     <div class="console-overlay" id="console-overlay">
         <div class="console-panel">
             <div class="console-title-bar">
-                <h2><i class="fa-solid fa-receipt"></i> CURRENT COMMANDA</h2>
+                <h2><i class="fa-solid fa-receipt"></i> MESA 04 COMANDA</h2>
                 <button class="btn-abort-console" onclick="toggleConsole(false)">&times;</button>
             </div>
             <div class="console-rows" id="drawer-items"></div>
             <div class="console-footer">
                 <div class="total-bill-row">
-                    <span>Total Bill:</span>
+                    <span>Total:</span>
                     <span class="val" id="total-amount">$0.00</span>
                 </div>
                 <button class="btn-push-kitchen" onclick="submitToWhatsApp()">
-                    <i class="fa-brands fa-whatsapp"></i> PUSH COMANDA TO KITCHEN
+                    <i class="fa-brands fa-whatsapp"></i> ENVIAR A COCINA
                 </button>
             </div>
         </div>
     </div>
 
     <script>
-        // Data del menú original del PDF[cite: 1]
+        // Base de datos limpia de emojis
         const menuProducts = [
-            // HAMBURGUESAS[cite: 1]
-            { id: 1, name: "Slappy", category: "hamburguesas", price: 5.00, desc: "Queso hamburguesa 1/4 de libra.", icon: "🍔" },
-            { id: 2, name: "Ollie 180", category: "hamburguesas", price: 6.00, desc: "Tapas de plátano, 1/4 de libra, bacon, queso.", icon: "🛹" },
-            { id: 3, name: "Ollie 360", category: "hamburguesas", price: 7.00, desc: "1/4 de libra, queso, tomate, cebolla y lechuga.", icon: "🍔" },
-            { id: 4, name: "Kick Flip", category: "hamburguesas", price: 7.00, desc: "1/4 de libra, queso, champiñones salteados, tomate, cebolla y lechuga.", icon: "🍄" },
-            { id: 5, name: "Hard Flip", category: "hamburguesas", price: 8.00, desc: "1/4 de libra, queso, bacon, tomate, cebolla y lechuga.", icon: "🥓" },
-            { id: 6, name: "Varial Flip", category: "hamburguesas", price: 8.00, desc: "1/4 de libra, queso, bacon, huevo, tomate, cebolla y lechuga.", icon: "🍳" },
-            { id: 7, name: "Nollie Flip", category: "hamburguesas", price: 10.00, desc: "1/4 de libra, queso, bacon, guacamole, pico de gallo.", icon: "🥑" },
-            { id: 8, name: "Heel Flip", category: "hamburguesas", price: 10.00, desc: "1/4 de libra, queso mozzarella, piña y alioli.", icon: "🍍" },
-            { id: 9, name: "360 Flip", category: "hamburguesas", price: 10.00, desc: "1/4 de libra, queso, tajada, tomate, cebolla y lechuga.", icon: "🛹" },
-            { id: 10, name: "Freestyle", category: "hamburguesas", price: 12.00, desc: "Doble 1/4 libra, queso, bacon, tomate, cebolla y lechuga.", icon: "☠️" },
+            { id: 1, name: "Slappy", category: "hamburguesas", price: 5.00, desc: "Queso hamburguesa 1/4 de libra." },
+            { id: 2, name: "Ollie 180", category: "hamburguesas", price: 6.00, desc: "Tapas de plátano, 1/4 de libra, bacon, queso." },
+            { id: 3, name: "Ollie 360", category: "hamburguesas", price: 7.00, desc: "1/4 de libra, queso, tomate, cebolla y lechuga." },
+            { id: 4, name: "Kick Flip", category: "hamburguesas", price: 7.00, desc: "1/4 de libra, queso, champiñones salteados, tomate, cebolla y lechuga." },
+            { id: 5, name: "Hard Flip", category: "hamburguesas", price: 8.00, desc: "1/4 de libra, queso, bacon, tomate, cebolla y lechuga." },
+            { id: 6, name: "Varial Flip", category: "hamburguesas", price: 8.00, desc: "1/4 de libra, queso, bacon, huevo, tomate, cebolla y lechuga." },
+            { id: 7, name: "Nollie Flip", category: "hamburguesas", price: 10.00, desc: "1/4 de libra, queso, bacon, guacamole, pico de gallo." },
+            { id: 8, name: "Heel Flip", category: "hamburguesas", price: 10.00, desc: "1/4 de libra, queso mozzarella, piña y alioli." },
+            { id: 9, name: "360 Flip", category: "hamburguesas", price: 10.00, desc: "1/4 de libra, queso, tajada, tomate, cebolla y lechuga." },
+            { id: 10, name: "Freestyle", category: "hamburguesas", price: 12.00, desc: "Doble 1/4 libra, queso, bacon, tomate, cebolla y lechuga." },
 
-            // WINGS & BONELESS[cite: 1]
-            { id: 11, name: "Cinco Alitas", category: "wings", price: 5.00, desc: "5 piezas de alitas tradicionales crujientes.", icon: "🍗" },
-            { id: 12, name: "Cinco Boneless", category: "wings", price: 6.99, desc: "5 jugosos trozos de pechuga deshuesada.", icon: "🍗" },
-            { id: 13, name: "Diez Alitas", category: "wings", price: 10.00, desc: "10 alitas perfectas para la sesión.", icon: "🔥" },
-            { id: 14, name: "Diez Boneless", category: "wings", price: 11.99, desc: "10 piezas de boneless listos para disfrutar.", icon: "🔥" },
+            { id: 11, name: "Cinco Alitas", category: "wings", price: 5.00, desc: "5 piezas de alitas tradicionales crujientes." },
+            { id: 12, name: "Cinco Boneless", category: "wings", price: 6.99, desc: "5 jugosos trozos de pechuga deshuesada." },
+            { id: 13, name: "Diez Alitas", category: "wings", price: 10.00, desc: "10 alitas perfectas para la sesión." },
+            { id: 14, name: "Diez Boneless", category: "wings", price: 11.99, desc: "10 piezas de boneless listos para disfrutar." },
 
-            // VEGGIES[cite: 1]
-            { id: 15, name: "Switch", category: "veggies", price: 8.00, desc: "Vegetariana de garbanzo, queso mozzarella, salsa alioli, mermelada de cebolla y onion strips.", icon: "🌱" },
-            { id: 16, name: "Switch 360 Flip", category: "veggies", price: 12.00, desc: "Vegetariana de garbanzo, queso mozzarella, tomate y lechuga (Doble porción).", icon: "🌱" },
-            { id: 17, name: "Switch Heel", category: "veggies", price: 9.00, desc: "Vegetariana de garbanzo, queso mozzarella, tomate y lechuga.", icon: "🌱" },
-            { id: 18, name: "Switch 180", category: "veggies", price: 5.00, desc: "Cinco falafel de garbanzo.", icon: "🧆" },
-            { id: 19, name: "Switch 360", category: "veggies", price: 10.00, desc: "Diez falafel de garbanzo.", icon: "🧆" },
+            { id: 15, name: "Switch", category: "veggies", price: 8.00, desc: "Vegetariana de garbanzo, queso mozzarella, salsa alioli, mermelada de cebolla y onion strips." },
+            { id: 16, name: "Switch 360 Flip", category: "veggies", price: 12.00, desc: "Vegetariana de garbanzo, queso mozzarella, tomate y lechuga (Doble porción)." },
+            { id: 17, name: "Switch Heel", category: "veggies", price: 9.00, desc: "Vegetariana de garbanzo, queso mozzarella, tomate y lechuga." },
+            { id: 18, name: "Switch 180", category: "veggies", price: 5.00, desc: "Cinco falafel de garbanzo." },
+            { id: 19, name: "Switch 360", category: "veggies", price: 10.00, desc: "Diez falafel de garbanzo." },
 
-            // TRICKS (PAPAS)[cite: 1]
-            { id: 20, name: "Papas Poser", category: "tricks", price: 3.50, desc: "Finas hierbas, sal y pimienta. ¡Las mejores papas!", icon: "🍟" },
-            { id: 21, name: "Papas Pro", category: "tricks", price: 3.50, desc: "Canela, paprika, sal rosada del Himalaya.", icon: "🍟" },
-            { id: 22, name: "Papas Pop", category: "tricks", price: 4.50, desc: "Finas hierbas, sal, pimienta y queso cheddar gratinado.", icon: "🧀" },
-            { id: 23, name: "Imposible Papas", category: "tricks", price: 8.50, desc: "Salsa brava, guacamole, pico de gallo, queso cheddar gratinado, bacon.", icon: "🥓" },
+            { id: 20, name: "Papas Poser", category: "tricks", price: 3.50, desc: "Finas hierbas, sal y pimienta. ¡Las mejores papas!" },
+            { id: 21, name: "Papas Pro", category: "tricks", price: 3.50, desc: "Canela, paprika, sal rosada del Himalaya." },
+            { id: 22, name: "Papas Pop", category: "tricks", price: 4.50, desc: "Finas hierbas, sal, pimienta y queso cheddar gratinado." },
+            { id: 23, name: "Imposible Papas", category: "tricks", price: 8.50, desc: "Salsa brava, guacamole, pico de gallo, queso cheddar gratinado, bacon." },
 
-            // COMPARTIR[cite: 1]
-            { id: 24, name: "Copita de Patacón", category: "compartir", price: 5.00, desc: "4 cestas de patatón, alioli, pico de gallo, queso cheddar gratinado, bacon.", icon: "🍌" },
-            { id: 25, name: "Wallie Nachos", category: "compartir", price: 10.00, desc: "Salsa brava, guacamole, pico de gallo, queso cheddar gratinado, bacon.", icon: "🌮" },
-            { id: 26, name: "Wrap", category: "compartir", price: 7.00, desc: "Pollo, lechuga, tomate, mermelada de cebolla, queso cheddar, alioli. Con Papas Poser.", icon: "🌯" },
-            { id: 27, name: "Cheese Quesadilla", category: "compartir", price: 5.00, desc: "Queso cheddar, alioli.", icon: "🧀" },
-            { id: 28, name: "Quesadilla de Pollo", category: "compartir", price: 6.50, desc: "Queso cheddar, pollo, alioli.", icon: "🌮" },
+            { id: 24, name: "Copita de Patacón", category: "compartir", price: 5.00, desc: "4 cestas de patatón, alioli, pico de gallo, queso cheddar gratinado, bacon." },
+            { id: 25, name: "Wallie Nachos", category: "compartir", price: 10.00, desc: "Salsa brava, guacamole, pico de gallo, queso cheddar gratinado, bacon." },
+            { id: 26, name: "Wrap", category: "compartir", price: 7.00, desc: "Pollo, lechuga, tomate, mermelada de cebolla, queso cheddar, alioli. Con Papas Poser." },
+            { id: 27, name: "Cheese Quesadilla", category: "compartir", price: 5.00, desc: "Queso cheddar, alioli." },
+            { id: 28, name: "Quesadilla de Pollo", category: "compartir", price: 6.50, desc: "Queso cheddar, pollo, alioli." },
 
-            // CERVEZAS[cite: 1]
-            { id: 29, name: "Cervezas Nacionales", category: "cervezas", price: 2.00, desc: "Balboa Roja, Balboa Ice, Panamá, Panamá Light, Atlas Golden Light.", icon: "🍺" },
-            { id: 30, name: "Cervezas Importadas Básicas", category: "cervezas", price: 3.00, desc: "Budweiser, Miller Draft, Modelo, Michelob.", icon: "🍺" },
-            { id: 31, name: "Cervezas Importadas Premium A", category: "cervezas", price: 3.50, desc: "Corona, Polar, Quilmes.", icon: "🍺" },
-            { id: 32, name: "Cervezas Importadas Premium B", category: "cervezas", price: 4.00, desc: "BlueMoon, Estrella Damm, Estrella Galicia, Stella Artois, Daura Damm.", icon: "🍺" },
-            { id: 33, name: "Cervezas Importadas Premium C", category: "cervezas", price: 4.50, desc: "Voll Damm, Heineken.", icon: "🍺" },
-            { id: 34, name: "Cervezas Artesanales Locales", category: "cervezas", price: 5.00, desc: "Casa Bruja, Central, Mulata, Clandestina, La Murga, Cervecería Maestra.", icon: "🍻" },
-            { id: 35, name: "Artesanales Especiales", category: "cervezas", price: 5.00, desc: "Honey Dew, Belhaven.", icon: "🍻" },
-            { id: 36, name: "Cerveza Fruli", category: "cervezas", price: 5.50, desc: "Cerveza premium Fruli.", icon: "🍓" },
-            { id: 37, name: "Cerveza Tropper", category: "cervezas", price: 8.00, desc: "Cerveza especial Tropper de colección.", icon: "💀" },
+            { id: 29, name: "Nacionales", category: "cervezas", price: 2.00, desc: "Balboa Roja, Balboa Ice, Panamá, Panamá Light, Atlas Golden Light." },
+            { id: 30, name: "Importadas Básicas", category: "cervezas", price: 3.00, desc: "Budweiser, Miller Draft, Modelo, Michelob." },
+            { id: 31, name: "Importadas Premium A", category: "cervezas", price: 3.50, desc: "Corona, Polar, Quilmes." },
+            { id: 32, name: "Importadas Premium B", category: "cervezas", price: 4.00, desc: "BlueMoon, Estrella Damm, Estrella Galicia, Stella Artois, Daura Damm." },
+            { id: 33, name: "Importadas Premium C", category: "cervezas", price: 4.50, desc: "Voll Damm, Heineken." },
+            { id: 34, name: "Artesanales Locales", category: "cervezas", price: 5.00, desc: "Casa Bruja, Central, Mulata, Clandestina, La Murga, Cervecería Maestra." },
+            { id: 35, name: "Artesanales Especiales", category: "cervezas", price: 5.00, desc: "Honey Dew, Belhaven." },
+            { id: 36, name: "Fruli", category: "cervezas", price: 5.50, desc: "Cerveza premium Fruli." },
+            { id: 37, name: "Tropper", category: "cervezas", price: 8.00, desc: "Cerveza especial Tropper de colección." },
 
-            // BEBIDAS[cite: 1]
-            { id: 38, name: "Agua", category: "bebidas", price: 1.00, desc: "Botella de agua fría.", icon: "💧" },
-            { id: 39, name: "Soda / Té Lipton", category: "bebidas", price: 1.80, desc: "Lata de soda variada o Té Lipton frío.", icon: "🥤" },
-            { id: 40, name: "Licuados de Frutas", category: "bebidas", price: 2.00, desc: "Licuados naturales refrescantes.", icon: "🍓" },
-            { id: 41, name: "Batidos de Frutas / Limonada", category: "bebidas", price: 2.50, desc: "Frutas naturales con agua o Limonada clásica.", icon: "🍋" },
-            { id: 42, name: "Limonada con Hierba Buena", category: "bebidas", price: 3.50, desc: "Limonada con hierba buena fresca o infusión helada.", icon: "🌿" },
-            { id: 43, name: "Café de la Barra (Caliente)", category: "bebidas", price: 2.50, desc: "Americano, Cappuccino, Latte o Vainilla.", icon: "☕" },
-            { id: 44, name: "Café Especial / Chocolate", category: "bebidas", price: 3.00, desc: "Café con leche de almendra o Chocolate caliente.", icon: "☕" },
-            { id: 45, name: "Moccachino", category: "bebidas", price: 3.50, desc: "Café espresso, leche y chocolate gourmet.", icon: "🍫" }
+            { id: 38, name: "Agua", category: "bebidas", price: 1.00, desc: "Botella de agua fría." },
+            { id: 39, name: "Soda / Té Lipton", category: "bebidas", price: 1.80, desc: "Lata de soda variada o Té Lipton frío." },
+            { id: 40, name: "Licuados de Frutas", category: "bebidas", price: 2.00, desc: "Licuados naturales refrescantes." },
+            { id: 41, name: "Batidos / Limonada", category: "bebidas", price: 2.50, desc: "Frutas naturales con agua o Limonada clásica." },
+            { id: 42, name: "Limonada Hierba Buena", category: "bebidas", price: 3.50, desc: "Limonada con hierba buena fresca o infusión helada." },
+            { id: 43, name: "Café Caliente", category: "bebidas", price: 2.50, desc: "Americano, Cappuccino, Latte o Vainilla." },
+            { id: 44, name: "Café Especial / Chocolate", category: "bebidas", price: 3.00, desc: "Café con leche de almendra o Chocolate caliente." },
+            { id: 45, name: "Moccachino", category: "bebidas", price: 3.50, desc: "Café espresso, leche y chocolate gourmet." }
         ];
 
         let cart = [];
@@ -629,37 +489,43 @@
         function renderMenu(products) {
             const container = document.getElementById('menu-items-container');
             container.innerHTML = '';
+            
             products.forEach((p, index) => {
-                const card = document.createElement('div');
-                card.className = 'collage-card';
-                card.style.animationDelay = `${index * 0.02}s`;
-                card.innerHTML = `
-                    <div class="collage-visual"><span>${p.icon}</span></div>
-                    <div class="collage-details">
-                        <div>
+                // Inyectamos la imagen del Skateboard en el medio de la lista de todos los productos para romper el diseño
+                if (index === 15 && products.length > 20) {
+                    container.innerHTML += `<div class="editorial-break" style="background-image: url('images/461050391_18456828655049351_9152402834712300352_n.jpg'); margin: 30px -20px; width: calc(100% + 40px);"></div>`;
+                }
+
+                container.innerHTML += `
+                    <div class="menu-row" style="animation-delay: ${index * 0.02}s">
+                        <div class="row-info">
                             <h3>${p.name}</h3>
-                            <p class="collage-desc">${p.desc}</p>
+                            <p>${p.desc}</p>
                         </div>
-                        <div class="collage-actions">
-                            <span class="collage-price">$${p.price.toFixed(2)}</span>
-                            <button class="btn-add-tag" onclick="addToCart(${p.id})">ADD +</button>
+                        <div class="row-action">
+                            <span class="price">$${p.price.toFixed(2)}</span>
+                            <button class="btn-add-minimal" onclick="addToCart(${p.id})"><i class="fa-solid fa-plus"></i></button>
                         </div>
                     </div>
                 `;
-                container.appendChild(card);
             });
         }
 
         function filterCategory(cat) {
-            document.querySelectorAll('.stencil-tab').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.text-tab').forEach(b => b.classList.remove('active'));
             event.target.classList.add('active');
+            
             const container = document.getElementById('menu-items-container');
             container.style.opacity = 0;
+            
             setTimeout(() => {
-                if (cat === 'todos') { renderMenu(menuProducts); } 
-                else { renderMenu(menuProducts.filter(p => p.category === cat)); }
+                if (cat === 'todos') {
+                    renderMenu(menuProducts);
+                } else {
+                    renderMenu(menuProducts.filter(p => p.category === cat));
+                }
                 container.style.opacity = 1;
-            }, 120);
+            }, 150);
         }
 
         function addToCart(id) {
@@ -680,10 +546,16 @@
         function updateUI() {
             const count = cart.reduce((acc, i) => acc + i.qty, 0);
             const orderBar = document.getElementById('order-bar');
-            if (count > 0) { orderBar.classList.add('visible', 'pulse-glow'); } 
-            else { orderBar.classList.remove('visible', 'pulse-glow'); toggleConsole(false); }
+            
+            if (count > 0) {
+                orderBar.classList.add('visible');
+            } else {
+                orderBar.classList.remove('visible');
+                toggleConsole(false);
+            }
             
             document.getElementById('cart-badge').innerText = count;
+
             const body = document.getElementById('drawer-items');
             body.innerHTML = '';
             let total = 0;
@@ -721,8 +593,9 @@
 
         function submitToWhatsApp() {
             if(cart.length === 0) return;
-            let msg = "🛹 *ARMÓNICA SHOP CAFE - COMANDA RAW* 🛹\n";
-            msg += "📍 *Ubicación:* Mesa 04\n";
+            
+            let msg = "🛹 *ARMÓNICA SHOP CAFE - COMANDA* 🛹\n";
+            msg += "📍 *Mesa:* 04\n";
             msg += "=========================\n";
             let total = 0;
             cart.forEach(i => {
@@ -732,7 +605,8 @@
             });
             msg += "=========================\n";
             msg += `💰 *TOTAL CUENTA:* $${total.toFixed(2)}\n\n`;
-            msg += "📱 _Comanda procesada vía menú anti-grid interactivo._";
+            msg += "📱 _Generado vía menú interactivo QR._";
+
             window.open(`https://wa.me/50760000000?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
