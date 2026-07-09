@@ -3,477 +3,469 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Armónica Shop Cafe - Menú Interactivo</title>
+    <title>Armónica Proyect - Anti-Grid Experience</title>
+    <!-- Iconos y Fuentes Brutalistas -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-concrete: #121212;     /* Gris asfalto texturizado */
-            --surface-dark: #070707;    /* Negro tinta industrial */
-            --border-grunge: #262626;   /* Bordes de acero / metal */
-            --neon-white: #ffffff;      
-            --skate-yellow: #ffcc00;    /* Amarillo señal de tránsito / Grafiti */
-            --text-light: #f5f5f5;
-            --text-dim: #666666;
-            --whatsapp-green: #25d366;
-            --font-urban: 'Anton', sans-serif;
-            --font-clean: 'Space Grotesk', sans-serif;
+            --bg-asphalt: #0d0d0d;      /* Negro asfalto puro */
+            --concrete-grey: #181818;   /* Cemento profundo */
+            --grunge-border: #2a2a2a;   /* Bordes de acero rústico */
+            --neon-strobe: #ffffff;     /* Brillo blanco del logo */
+            --skate-fire: #ffcc00;      /* Amarillo señal / Grafiti */
+            --text-raw: #f5f5f5;
+            --text-dark: #000000;
+            --muted-iron: #555555;
+            --whatsapp-glitch: #25d366;
+            --font-heavy: 'Anton', sans-serif;
+            --font-street: 'Space Grotesk', sans-serif;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: var(--font-clean);
+            font-family: var(--font-street);
             -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            background-color: var(--bg-concrete);
-            color: var(--text-light);
-            padding-bottom: 120px;
+            background-color: var(--bg-asphalt);
+            color: var(--text-raw);
+            padding-bottom: 130px;
             overflow-x: hidden;
             
-            /* Patrón geométrico de alta densidad inspirado en su envoltorio */
+            /* DISEÑO GRÁFICO: Fondo texturizado complejo de alta costura callejera */
             background-image: 
-                linear-gradient(45deg, #090909 25%, transparent 25%, transparent 75%, #090909 75%, #090909),
-                linear-gradient(45deg, #090909 25%, transparent 25%, transparent 75%, #090909 75%, #090909);
-            background-size: 30px 30px;
-            background-position: 0 0, 15px 15px;
+                radial-gradient(circle at 20% 30%, rgba(255, 204, 0, 0.03) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.02) 0%, transparent 40%),
+                linear-gradient(45deg, #050505 25%, transparent 25%, transparent 75%, #050505 75%, #050505),
+                linear-gradient(45deg, #050505 25%, transparent 25%, transparent 75%, #050505 75%, #050505);
+            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+            background-position: 0 0, 0 0, 0 0, 20px 20px;
         }
 
-        /* --- URBAN HEADER --- */
-        .shop-header {
-            background: linear-gradient(180deg, #000000 0%, rgba(18,18,18,0.9) 100%);
-            padding: 50px 20px 30px 20px;
+        /* --- VANDAL HEADER --- */
+        .vandal-header {
+            background: #000000;
+            padding: 60px 20px 40px 20px;
             text-align: center;
-            border-bottom: 4px solid var(--skate-yellow);
             position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+            overflow: hidden;
         }
         
-        /* Línea gráfica de advertencia callejera */
-        .shop-header::before {
+        /* Efecto de fondo rasgado / textura de cinta en el header */
+        .vandal-header::after {
             content: '';
             position: absolute;
-            bottom: 0; left: 0; width: 100%; height: 4px;
-            background: repeating-linear-gradient(-45deg, #000, #000 10px, var(--skate-yellow) 10px, var(--skate-yellow) 20px);
+            bottom: 0; left: 0; width: 100%; height: 8px;
+            background: repeating-linear-gradient(-45deg, var(--text-dark), var(--text-dark) 12px, var(--skate-fire) 12px, var(--skate-fire) 24px);
         }
 
-        .logo-graphic-node {
-            width: 85px;
-            height: 85px;
+        .halo-logo {
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
-            border: 4px solid var(--neon-white);
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.4), inset 0 0 15px rgba(255,255,255,0.3);
-            margin: 0 auto 20px auto;
+            border: 4px solid var(--neon-strobe);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3), inset 0 0 20px rgba(255,255,255,0.2);
+            margin: 0 auto 25px auto;
             display: flex;
             align-items: center;
             justify-content: center;
             background-color: #000;
-            background-image: radial-gradient(circle, #1a1a1a 0%, #000 80%);
+            transform: rotate(-3deg);
+            transition: transform 0.3s ease;
         }
-        .logo-graphic-node span {
-            font-family: var(--font-urban);
-            font-size: 52px;
-            color: var(--neon-white);
+        .halo-logo:active { transform: scale(1.1) rotate(5deg); }
+        .halo-logo span {
+            font-family: var(--font-heavy);
+            font-size: 58px;
+            color: var(--neon-strobe);
             line-height: 1;
-            margin-top: -6px;
-            letter-spacing: -2px;
-            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+            margin-top: -8px;
         }
 
-        .shop-header h1 {
-            font-family: var(--font-urban);
-            font-size: 38px;
-            letter-spacing: 1px;
+        /* Títulos masivos con textura interna */
+        .vandal-header h1 {
+            font-family: var(--font-heavy);
+            font-size: 46px;
+            letter-spacing: -1px;
             text-transform: uppercase;
-            line-height: 0.9;
-            color: var(--text-light);
-            -webkit-text-stroke: 1px rgba(255,255,255,0.1);
+            line-height: 0.85;
+            color: var(--text-raw);
         }
-        .shop-header h1 span {
-            color: var(--skate-yellow);
+        .vandal-header h1 span {
+            color: var(--skate-fire);
+            font-size: 52px;
             display: block;
-            font-size: 42px;
-            text-shadow: 2px 2px 0px #000;
+            text-shadow: 3px 3px 0px #000;
         }
-        .graphic-tag {
-            font-size: 10px;
+
+        .sticker-badge {
+            font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 3px;
-            color: #000;
-            background-color: var(--text-light);
-            padding: 4px 12px;
+            color: var(--text-dark);
+            background-color: var(--text-raw);
+            padding: 5px 16px;
             font-weight: 700;
             display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 15px;
-            transform: rotate(-1.5deg);
-            box-shadow: 3px 3px 0px var(--skate-yellow);
+            margin-top: 20px;
+            transform: rotate(2.5deg);
+            box-shadow: 4px 4px 0px var(--skate-fire);
         }
 
-        /* --- HERO PROMO BANNERS (CARRUSEL SLIDER) --- */
-        .promo-slider-container {
-            padding: 20px 15px 10px 15px;
-            overflow-x: auto;
+        /* --- FLYERS ASIMÉTRICOS (PROMOS) --- */
+        .flyer-magazine-rack {
+            padding: 25px 15px 15px 15px;
             display: flex;
-            gap: 12px;
+            gap: 16px;
+            overflow-x: auto;
             scrollbar-width: none;
         }
-        .promo-slider-container::-webkit-scrollbar { display: none; }
+        .flyer-magazine-rack::-webkit-scrollbar { display: none; }
         
-        .promo-banner {
-            min-width: 280px;
-            height: 140px;
-            border: 2px solid var(--border-grunge);
+        .grunge-flyer {
+            min-width: 290px;
+            height: 160px;
             background-size: cover;
             background-position: center;
             position: relative;
+            border: 2px solid var(--text-raw);
+            box-shadow: 8px 8px 0px #000;
             display: flex;
             align-items: flex-end;
-            padding: 15px;
-            box-shadow: 5px 5px 0px rgba(0,0,0,0.5);
+            padding: 20px;
+            transition: all 0.25s ease;
         }
-        .promo-overlay {
+        /* Rotación alterna para dar el look "tirado en una mesa" */
+        .grunge-flyer:nth-child(odd) { transform: rotate(-1.5deg); }
+        .grunge-flyer:nth-child(even) { transform: rotate(1.5deg); }
+        .grunge-flyer:active { transform: scale(0.98) rotate(0deg); }
+
+        .flyer-tint {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 100%);
-            z-index: 1;
+            background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 100%);
         }
-        .promo-text {
-            z-index: 2;
-            position: relative;
-        }
-        .promo-text h2 {
-            font-family: var(--font-urban);
-            font-size: 20px;
-            text-transform: uppercase;
-            color: var(--skate-yellow);
+        .flyer-data { z-index: 2; position: relative; }
+        .flyer-data h2 {
+            font-family: var(--font-heavy);
+            font-size: 24px;
+            color: var(--skate-fire);
             line-height: 1;
-            margin-bottom: 2px;
+            text-shadow: 2px 2px 0px #000;
         }
-        .promo-text p {
-            font-size: 11px;
-            color: var(--text-light);
-            font-weight: bold;
-        }
+        .flyer-data p { font-size: 11px; font-weight: 700; letter-spacing: 0.5px; }
 
-        /* --- CATEGORÍAS --- */
-        .categories-slider {
+        /* --- CATEGORÍAS TIPO STENCIL --- */
+        .stencil-categories {
             display: flex;
-            gap: 8px;
-            padding: 15px;
-            background: rgba(5, 5, 5, 0.9);
+            gap: 10px;
+            padding: 20px 15px;
+            background: rgba(0, 0, 0, 0.85);
             position: sticky;
             top: 0;
             z-index: 10;
             overflow-x: auto;
             scrollbar-width: none;
-            border-bottom: 1px solid var(--border-grunge);
+            border-bottom: 2px solid var(--grunge-border);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
         }
-        .categories-slider::-webkit-scrollbar { display: none; }
+        .stencil-categories::-webkit-scrollbar { display: none; }
 
-        .category-tab {
-            background: transparent;
-            border: 2px solid var(--border-grunge);
-            color: var(--text-dim);
-            padding: 10px 22px;
-            font-family: var(--font-urban);
-            font-size: 16px;
+        .stencil-tab {
+            background: #111;
+            border: 2px solid var(--grunge-border);
+            color: var(--muted-iron);
+            padding: 12px 24px;
+            font-family: var(--font-heavy);
+            font-size: 18px;
             letter-spacing: 1px;
             text-transform: uppercase;
-            white-space: nowrap;
             cursor: pointer;
-            transition: all 0.25s ease;
+            transition: all 0.2s ease;
         }
-        .category-tab.active {
-            background-color: var(--skate-yellow);
-            color: #000;
-            border-color: var(--skate-yellow);
-            box-shadow: 4px 4px 0px var(--text-light);
-            transform: translateY(-2px);
-        }
-
-        /* --- MENU GRID --- */
-        .menu-grid {
-            padding: 20px 15px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-            gap: 16px;
+        .stencil-tab.active {
+            background-color: var(--skate-fire);
+            color: var(--text-dark);
+            border-color: var(--skate-fire);
+            box-shadow: 5px 5px 0px var(--text-raw);
+            transform: translateY(-3px) rotate(-1deg);
         }
 
-        .menu-card {
-            background: var(--surface-dark);
-            border: 2px solid var(--border-grunge);
-            position: relative;
+        /* --- ANTI-GRID COLLAGE (MENU) --- */
+        .collage-container {
+            padding: 30px 15px;
             display: flex;
             flex-direction: column;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            gap: 24px; /* Layout vertical asimétrico tipo fanzine */
+        }
+
+        .collage-card {
+            background: var(--concrete-grey);
+            border: 2px solid var(--grunge-border);
+            display: flex;
+            height: 130px;
+            position: relative;
             opacity: 0;
-            transform: translateY(20px);
-            animation: cardReveal 0.4s forwards ease;
+            transform: scale(0.95);
+            animation: fanzineReveal 0.35s forwards cubic-bezier(0.175, 0.885, 0.32, 1.2);
         }
-        
-        @keyframes cardReveal {
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes fanzineReveal { to { opacity: 1; transform: scale(1); } }
+
+        /* Alternamos la dirección del contenido y la inclinación de forma asimétrica */
+        .collage-card:nth-child(even) {
+            flex-direction: row-reverse;
+            transform: rotate(1deg);
+            border-left: 4px solid var(--skate-fire);
+        }
+        .collage-card:nth-child(odd) {
+            transform: rotate(-1deg);
+            border-right: 4px solid var(--neon-white);
+        }
+        .collage-card:active {
+            border-color: var(--skate-fire) !important;
+            transform: scale(0.98) rotate(0deg) !important;
         }
 
-        .menu-card:active {
-            transform: scale(0.96) rotate(-1deg);
-            border-color: var(--skate-yellow);
-        }
-
-        .card-graphic-frame {
-            width: 100%;
-            height: 120px;
-            background: radial-gradient(circle, #1c1c1c 0%, #080808 100%);
+        /* Contenedor del icono/gráfico de la tarjeta */
+        .collage-visual {
+            width: 35%;
+            background: radial-gradient(circle, #222 0%, #050505 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 42px;
-            border-bottom: 2px solid var(--border-grunge);
+            font-size: 46px;
             position: relative;
             overflow: hidden;
         }
-        
-        .card-graphic-frame::before {
-            content: '';
-            position: absolute;
-            width: 100%; height: 100%;
-            background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 10px 10px;
+        .collage-visual::after {
+            content: ''; position: absolute; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(255,255,255,0.01) 1px, transparent 1px);
+            background-size: 8px 8px;
         }
 
-        .card-graphic-frame span {
-            z-index: 2;
-            filter: drop-shadow(0px 0px 12px rgba(255, 204, 0, 0.4));
-        }
-
-        .card-body {
+        .collage-details {
+            width: 65%;
             padding: 15px;
             display: flex;
             flex-direction: column;
-            flex-grow: 1;
-            background: linear-gradient(180deg, var(--surface-dark) 0%, #000000 100%);
+            justify-content: space-between;
+            background: #090909;
         }
-        .card-body h3 {
-            font-family: var(--font-urban);
-            font-size: 19px;
+        .collage-details h3 {
+            font-family: var(--font-heavy);
+            font-size: 20px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--text-light);
+            color: var(--text-raw);
             line-height: 1;
-            margin-bottom: 6px;
         }
-        .card-desc {
+        .collage-desc {
             font-size: 11px;
-            color: #777;
-            line-height: 1.4;
-            margin-bottom: 15px;
-            flex-grow: 1;
+            color: #666;
+            line-height: 1.3;
+            margin: 4px 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
-        .card-footer-layout {
+        .collage-actions {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: auto;
         }
-        .card-price {
-            font-family: var(--font-urban);
-            color: var(--skate-yellow);
-            font-size: 22px;
-            text-shadow: 1px 1px 0px #000;
+        .collage-price {
+            font-family: var(--font-heavy);
+            color: var(--skate-fire);
+            font-size: 24px;
         }
         
-        .btn-add-graphic {
-            background-color: transparent;
-            color: var(--text-light);
-            border: 2px solid var(--text-light);
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .btn-add-tag {
+            background: transparent;
+            color: var(--text-raw);
+            border: 2px solid var(--text-raw);
+            padding: 2px 14px;
+            font-family: var(--font-heavy);
+            font-size: 15px;
+            text-transform: uppercase;
             cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            transition: all 0.2s ease;
+            transition: all 0.15s ease;
         }
-        .btn-add-graphic:active {
-            background-color: var(--skate-yellow);
-            color: #000;
-            border-color: var(--skate-yellow);
-            transform: scale(1.1);
+        .btn-add-tag:active {
+            background-color: var(--skate-fire);
+            color: var(--text-dark);
+            border-color: var(--skate-fire);
         }
 
-        /* --- COMMUNITY SECTION (INSTAGRAM & AMBIENTE) --- */
-        .instagram-section {
-            padding: 30px 15px;
-            background: #000;
-            border-top: 2px solid var(--border-grunge);
+        /* --- CLAN COMMUNITY SECT (INSTAGRAM) --- */
+        .clan-mural {
+            padding: 40px 15px;
+            background: #000000;
+            border-top: 3px solid var(--grunge-border);
             text-align: center;
+            position: relative;
         }
-        .instagram-section h2 {
-            font-family: var(--font-urban);
-            font-size: 24px;
+        .clan-mural h2 {
+            font-family: var(--font-heavy);
+            font-size: 32px;
             text-transform: uppercase;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
         }
-        .btn-instagram-sticker {
+        .sticker-link-ig {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            background-color: var(--skate-yellow);
-            color: #000;
+            gap: 12px;
+            background-color: var(--neon-white);
+            color: var(--text-dark);
             text-decoration: none;
-            padding: 12px 24px;
-            font-family: var(--font-urban);
-            font-size: 18px;
+            padding: 14px 28px;
+            font-family: var(--font-heavy);
+            font-size: 20px;
             text-transform: uppercase;
-            box-shadow: 4px 4px 0px var(--text-light);
-            margin-bottom: 25px;
-            transition: all 0.2s ease;
-        }
-        .btn-instagram-sticker:active {
-            transform: translate(2px, 2px);
-            box-shadow: 2px 2px 0px var(--text-light);
+            box-shadow: 6px 6px 0px var(--skate-fire);
+            margin-bottom: 30px;
+            transform: rotate(-1deg);
         }
         
-        .ambient-mosaic {
+        /* Mosaico de fotos reales con filtros rústicos intensos */
+        .grid-mosaic-grunge {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            gap: 12px;
         }
-        .ambient-photo {
+        .sticker-photo {
             width: 100%;
-            height: 130px;
-            border: 1px solid var(--border-grunge);
+            height: 140px;
+            border: 2px solid var(--grunge-border);
             background-size: cover;
             background-position: center;
-            /* Filtros de imagen estilo catálogo rústico/grunge */
-            filter: grayscale(20%) contrast(110%);
-            transition: all 0.3s ease;
+            filter: grayscale(40%) contrast(120%) brightness(90%);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .ambient-photo:active {
-            filter: grayscale(0%) contrast(100%);
-            transform: scale(0.98);
+        .sticker-photo:nth-child(1) { transform: rotate(-2deg); border-color: var(--skate-fire); }
+        .sticker-photo:nth-child(2) { transform: rotate(2deg); border-color: var(--neon-white); }
+        .sticker-photo:active {
+            filter: grayscale(0%) contrast(100%) brightness(100%);
+            transform: scale(1.03) rotate(0deg);
+            z-index: 5;
         }
 
-        /* --- FLOATING ORDER CONSOLE --- */
-        .bottom-order-console {
+        /* --- FLOATING COMMAND DESK --- */
+        .floating-desk-bar {
             position: fixed;
             bottom: 25px; left: 15px; right: 15px;
-            background-color: var(--skate-yellow);
-            color: #000;
+            background-color: var(--skate-fire);
+            color: var(--text-dark);
             padding: 18px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.9);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.9);
             z-index: 20;
-            transform: translateY(150%);
-            transition: transform 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transform: translateY(160%);
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.3);
         }
-        .bottom-order-console.visible { transform: translateY(0); }
-        .bottom-order-console.active-pulse { animation: consoleGlow 1.5s infinite alternate; }
-        @keyframes consoleGlow {
-            0% { box-shadow: 0 15px 40px rgba(0,0,0,0.9); }
-            100% { box-shadow: 0 0 25px rgba(255, 204, 0, 0.7); }
+        .floating-desk-bar.visible { transform: translateY(0); }
+        .floating-desk-bar.pulse-glow { animation: rawGlow 1.8s infinite alternate; }
+        @keyframes rawGlow {
+            0% { box-shadow: 0 20px 45px rgba(0,0,0,0.9); }
+            100% { box-shadow: 0 0 30px rgba(255, 204, 0, 0.8); }
         }
-        .bottom-order-console span {
-            font-family: var(--font-urban);
-            font-size: 18px;
-            letter-spacing: 1px;
+        .floating-desk-bar span {
+            font-family: var(--font-heavy);
+            font-size: 20px;
+            letter-spacing: 0.5px;
             text-transform: uppercase;
         }
-        .graphic-badge {
-            background-color: #000;
-            color: #fff;
-            font-family: var(--font-urban);
-            font-size: 15px;
-            padding: 2px 10px;
-            box-shadow: 2px 2px 0px #fff;
+        .raw-badge {
+            background-color: var(--text-dark);
+            color: var(--text-raw);
+            font-family: var(--font-heavy);
+            font-size: 16px;
+            padding: 2px 12px;
+            box-shadow: 3px 3px 0px var(--text-raw);
         }
 
-        /* --- DRAWER PANEL DE COMANDA --- */
-        .drawer-overlay {
+        /* --- OVERLAY CONSOLE (CARRITO) --- */
+        .console-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.95);
+            background-color: rgba(0,0,0,0.96);
             z-index: 30;
             display: none;
             align-items: flex-end;
         }
-        .drawer-surface {
-            background-color: var(--surface-dark);
+        .console-panel {
+            background-color: #050505;
             width: 100%;
             max-height: 85vh;
-            border-top: 4px solid var(--skate-yellow);
+            border-top: 4px solid var(--skate-fire);
             display: flex;
             flex-direction: column;
             padding: 24px;
             transform: translateY(100%);
-            transition: transform 0.3s ease-out;
+            transition: transform 0.3s cubic-bezier(0.1, 0.8, 0.3, 1);
         }
-        .drawer-overlay.active .drawer-surface { transform: translateY(0); }
+        .console-overlay.active .console-panel { transform: translateY(0); }
         
-        .drawer-title-bar {
+        .console-title-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--border-grunge);
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--grunge-border);
             padding-bottom: 12px;
         }
-        .drawer-title-bar h2 {
-            font-family: var(--font-urban);
-            font-size: 24px;
+        .console-title-bar h2 {
+            font-family: var(--font-heavy);
+            font-size: 26px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        .btn-close-console { background: none; border: none; color: #444; font-size: 36px; cursor: pointer; }
+        .btn-abort-console { background: none; border: none; color: #444; font-size: 38px; cursor: pointer; }
 
-        .drawer-list { overflow-y: auto; flex-grow: 1; }
-        .drawer-row {
+        .console-rows { overflow-y: auto; flex-grow: 1; }
+        .console-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 16px 0;
             border-bottom: 1px solid #111;
         }
-        .row-meta h4 { font-family: var(--font-urban); font-size: 16px; text-transform: uppercase; }
-        .row-meta span { font-size: 13px; color: var(--skate-yellow); font-weight: 700; }
-        .row-controls { display: flex; align-items: center; gap: 12px; }
-        .btn-qty-action { background: #111; border: 1px solid var(--border-grunge); color: #fff; width: 32px; height: 32px; font-weight: bold; }
-        .btn-qty-action:active { background-color: var(--skate-yellow); color: #000; }
-        .qty-label { font-family: var(--font-urban); font-size: 18px; min-width: 20px; text-align: center; }
+        .row-data h4 { font-family: var(--font-heavy); font-size: 18px; text-transform: uppercase; }
+        .row-data span { font-size: 13px; color: var(--skate-fire); font-weight: 700; }
+        .row-triggers { display: flex; align-items: center; gap: 14px; }
+        .btn-qty-trigger { background: #111; border: 1px solid var(--grunge-border); color: #fff; width: 34px; height: 34px; font-weight: bold; cursor: pointer; }
+        .btn-qty-trigger:active { background-color: var(--skate-fire); color: #000; }
+        .qty-val { font-family: var(--font-heavy); font-size: 20px; min-width: 20px; text-align: center; }
 
-        .checkout-area { margin-top: auto; padding-top: 20px; }
-        .total-row {
+        .console-footer { margin-top: auto; padding-top: 20px; }
+        .total-bill-row {
             display: flex;
             justify-content: space-between;
-            font-family: var(--font-urban);
-            font-size: 22px;
-            margin-bottom: 20px;
+            font-family: var(--font-heavy);
+            font-size: 24px;
+            margin-bottom: 25px;
             text-transform: uppercase;
         }
-        .total-row .val { color: var(--skate-yellow); font-size: 26px; }
+        .total-bill-row .val { color: var(--skate-fire); font-size: 30px; text-shadow: 2px 2px 0px #000; }
         
-        .btn-whatsapp-fire {
+        .btn-push-kitchen {
             width: 100%;
-            background-color: var(--whatsapp-green);
+            background-color: var(--whatsapp-glitch);
             color: white;
             border: none;
-            padding: 18px;
-            font-family: var(--font-urban);
-            font-size: 20px;
+            padding: 20px;
+            font-family: var(--font-heavy);
+            font-size: 22px;
             letter-spacing: 1px;
             display: flex;
             justify-content: center;
@@ -481,89 +473,98 @@
             gap: 12px;
             cursor: pointer;
             text-transform: uppercase;
+            box-shadow: 0 4px 25px rgba(37, 211, 102, 0.4);
         }
     </style>
 </head>
 <body>
 
-    <header class="shop-header">
-        <div class="logo-graphic-node">
+    <!-- Header / Identidad Gráfica Urbana -->
+    <header class="vandal-header">
+        <div class="halo-logo">
             <span>Λ</span>
         </div>
         <h1>HAMBURGUESAS, WINGS <span>& TRICKS</span></h1>
-        <div class="graphic-tag">
-            <i class="fa-solid fa-skull-crossbones"></i> GOTHIC SKATE FLOW • MESA 04
+        <div class="sticker-badge">
+            <i class="fa-solid fa-skull"></i> ANTI-GRID FLOW • MESA 04
         </div>
     </header>
 
-    <section class="promo-slider-container">
-        <div class="promo-banner" style="background-image: url('images/241736119_1611137669093990_7420467522005539851_n.jpg');">
-            <div class="promo-overlay"></div>
-            <div class="promo-text">
-                <h2>TRICKS & BEERS</h2>
-                <p>Las mejores Burgers con Cerveza Artesanal</p>
+    <!-- Flyers Asimétricos / Promos (Usando tus fotos reales de GitHub) -->
+    <section class="flyer-magazine-rack">
+        <div class="grunge-flyer" style="background-image: url('images/241736119_1611137669093990_7420467522005539851_n.jpg');">
+            <div class="flyer-tint"></div>
+            <div class="flyer-data">
+                <h2>TRICKS & CRAFT BEER</h2>
+                <p>Las Burgers de 1/4 con tu pinta local[cite: 1]</p>
             </div>
         </div>
-        <div class="promo-banner" style="background-image: url('images/440166777_18429949339049351_6790974657106025786_n.jpg');">
-            <div class="promo-overlay"></div>
-            <div class="promo-text">
-                <h2>WINGS SESSION</h2>
-                <p>Alitas y Boneless crujientes listos</p>
+        <div class="grunge-flyer" style="background-image: url('images/440166777_18429949339049351_6790974657106025786_n.jpg');">
+            <div class="flyer-tint"></div>
+            <div class="flyer-data">
+                <h2>WINGS & BONELESS</h2>
+                <p>Crujientes para aguantar la sesión[cite: 1]</p>
             </div>
         </div>
     </section>
 
-    <nav class="categories-slider">
-        <button class="category-tab active" onclick="filterCategory('todos')">All Menu</button>
-        <button class="category-tab" onclick="filterCategory('hamburguesas')">Hamburguesas</button>
-        <button class="category-tab" onclick="filterCategory('wings')">Wings & Boneless</button>
-        <button class="category-tab" onclick="filterCategory('veggies')">Veggies</button>
-        <button class="category-tab" onclick="filterCategory('tricks')">Tricks (Papas)</button>
-        <button class="category-tab" onclick="filterCategory('compartir')">Compartir</button>
-        <button class="category-tab" onclick="filterCategory('cervezas')">Cervezas</button>
-        <button class="category-tab" onclick="filterCategory('bebidas')">Bebidas</button>
+    <!-- Categorías Tipo Letrero Stencil -->
+    <nav class="stencil-categories">
+        <button class="stencil-tab active" onclick="filterCategory('todos')">All Items</button>
+        <button class="stencil-tab" onclick="filterCategory('hamburguesas')">Hamburguesas</button>
+        <button class="stencil-tab" onclick="filterCategory('wings')">Wings & Boneless</button>
+        <button class="stencil-tab" onclick="filterCategory('veggies')">Veggies</button>
+        <button class="stencil-tab" onclick="filterCategory('tricks')">Tricks</button>
+        <button class="stencil-tab" onclick="filterCategory('compartir')">Compartir</button>
+        <button class="stencil-tab" onclick="filterCategory('cervezas')">Cervezas</button>
+        <button class="stencil-tab" onclick="filterCategory('bebidas')">Bebidas</button>
     </nav>
 
-    <main class="menu-grid" id="menu-items-container"></main>
+    <!-- Contenedor Asimétrico Anti-Grid -->
+    <main class="collage-container" id="menu-items-container"></main>
 
-    <section class="instagram-section">
-        <h2>JOIN THE CLAN</h2>
-        <a href="https://www.instagram.com/armonicashop_" target="_blank" class="btn-instagram-sticker">
+    <!-- Mural de Comunidad (Instagram Oficial + Tus Fotos de Ambiente) -->
+    <section class="clan-mural">
+        <h2>THE ARMONICA CLAN</h2>
+        <a href="https://www.instagram.com/armonicashop_" target="_blank" class="sticker-link-ig">
             <i class="fa-brands fa-instagram"></i> @armonicashop_
         </a>
-        <div class="ambient-mosaic">
-            <div class="ambient-photo" style="background-image: url('images/451986315_18444537361049351_551687169489063687_n.jpg');"></div>
-            <div class="ambient-photo" style="background-image: url('images/472867054_18477736027049351_386756570900074606_n.jpg');"></div>
+        <div class="grid-mosaic-grunge">
+            <div class="sticker-photo" style="background-image: url('images/451986315_18444537361049351_551687169489063687_n.jpg');"></div>
+            <div class="sticker-photo" style="background-image: url('images/472867054_18477736027049351_386756570900074606_n.jpg');"></div>
         </div>
     </section>
 
-    <div class="bottom-order-console" id="order-bar" onclick="toggleDrawer(true)">
-        <span><i class="fa-solid fa-bolt"></i> REVIEW TOTAL COMMAND</span>
-        <mark class="graphic-badge" id="cart-badge">0</mark>
+    <!-- Consola de Comanda Inferior -->
+    <div class="floating-desk-bar" id="order-bar" onclick="toggleConsole(true)">
+        <span><i class="fa-solid fa-bolt-lightning"></i> CHECK MY COMMANDA</span>
+        <mark class="raw-badge" id="cart-badge">0</mark>
     </div>
 
-    <div class="drawer-overlay" id="drawer-overlay">
-        <div class="drawer-surface">
-            <div class="drawer-title-bar">
-                <h2><i class="fa-solid fa-file-invoice"></i> MESA 04 ORDER</h2>
-                <button class="btn-close-console" onclick="toggleDrawer(false)">&times;</button>
+    <!-- Consola del Carrito (Overlay Total) -->
+    <div class="console-overlay" id="console-overlay">
+        <div class="console-panel">
+            <div class="console-title-bar">
+                <h2><i class="fa-solid fa-receipt"></i> CURRENT COMMANDA</h2>
+                <button class="btn-abort-console" onclick="toggleConsole(false)">&times;</button>
             </div>
-            <div class="drawer-list" id="drawer-items"></div>
-            <div class="checkout-area">
-                <div class="total-row">
-                    <span>Total Account:</span>
+            <div class="console-rows" id="drawer-items"></div>
+            <div class="console-footer">
+                <div class="total-bill-row">
+                    <span>Total Bill:</span>
                     <span class="val" id="total-amount">$0.00</span>
                 </div>
-                <button class="btn-whatsapp-fire" onclick="submitToWhatsApp()">
-                    <i class="fa-brands fa-whatsapp"></i> SEND ORDER TO THE BAR
+                <button class="btn-push-kitchen" onclick="submitToWhatsApp()">
+                    <i class="fa-brands fa-whatsapp"></i> PUSH COMANDA TO KITCHEN
                 </button>
             </div>
         </div>
     </div>
 
     <script>
+        // Data del menú original del PDF[cite: 1]
         const menuProducts = [
-            // HAMBURGUESAS
+            // HAMBURGUESAS[cite: 1]
             { id: 1, name: "Slappy", category: "hamburguesas", price: 5.00, desc: "Queso hamburguesa 1/4 de libra.", icon: "🍔" },
             { id: 2, name: "Ollie 180", category: "hamburguesas", price: 6.00, desc: "Tapas de plátano, 1/4 de libra, bacon, queso.", icon: "🛹" },
             { id: 3, name: "Ollie 360", category: "hamburguesas", price: 7.00, desc: "1/4 de libra, queso, tomate, cebolla y lechuga.", icon: "🍔" },
@@ -575,33 +576,33 @@
             { id: 9, name: "360 Flip", category: "hamburguesas", price: 10.00, desc: "1/4 de libra, queso, tajada, tomate, cebolla y lechuga.", icon: "🛹" },
             { id: 10, name: "Freestyle", category: "hamburguesas", price: 12.00, desc: "Doble 1/4 libra, queso, bacon, tomate, cebolla y lechuga.", icon: "☠️" },
 
-            // WINGS & BONELESS
+            // WINGS & BONELESS[cite: 1]
             { id: 11, name: "Cinco Alitas", category: "wings", price: 5.00, desc: "5 piezas de alitas tradicionales crujientes.", icon: "🍗" },
             { id: 12, name: "Cinco Boneless", category: "wings", price: 6.99, desc: "5 jugosos trozos de pechuga deshuesada.", icon: "🍗" },
             { id: 13, name: "Diez Alitas", category: "wings", price: 10.00, desc: "10 alitas perfectas para la sesión.", icon: "🔥" },
             { id: 14, name: "Diez Boneless", category: "wings", price: 11.99, desc: "10 piezas de boneless listos para disfrutar.", icon: "🔥" },
 
-            // VEGGIES
+            // VEGGIES[cite: 1]
             { id: 15, name: "Switch", category: "veggies", price: 8.00, desc: "Vegetariana de garbanzo, queso mozzarella, salsa alioli, mermelada de cebolla y onion strips.", icon: "🌱" },
             { id: 16, name: "Switch 360 Flip", category: "veggies", price: 12.00, desc: "Vegetariana de garbanzo, queso mozzarella, tomate y lechuga (Doble porción).", icon: "🌱" },
             { id: 17, name: "Switch Heel", category: "veggies", price: 9.00, desc: "Vegetariana de garbanzo, queso mozzarella, tomate y lechuga.", icon: "🌱" },
             { id: 18, name: "Switch 180", category: "veggies", price: 5.00, desc: "Cinco falafel de garbanzo.", icon: "🧆" },
             { id: 19, name: "Switch 360", category: "veggies", price: 10.00, desc: "Diez falafel de garbanzo.", icon: "🧆" },
 
-            // TRICKS (PAPAS)
+            // TRICKS (PAPAS)[cite: 1]
             { id: 20, name: "Papas Poser", category: "tricks", price: 3.50, desc: "Finas hierbas, sal y pimienta. ¡Las mejores papas!", icon: "🍟" },
             { id: 21, name: "Papas Pro", category: "tricks", price: 3.50, desc: "Canela, paprika, sal rosada del Himalaya.", icon: "🍟" },
             { id: 22, name: "Papas Pop", category: "tricks", price: 4.50, desc: "Finas hierbas, sal, pimienta y queso cheddar gratinado.", icon: "🧀" },
             { id: 23, name: "Imposible Papas", category: "tricks", price: 8.50, desc: "Salsa brava, guacamole, pico de gallo, queso cheddar gratinado, bacon.", icon: "🥓" },
 
-            // COMPARTIR
+            // COMPARTIR[cite: 1]
             { id: 24, name: "Copita de Patacón", category: "compartir", price: 5.00, desc: "4 cestas de patatón, alioli, pico de gallo, queso cheddar gratinado, bacon.", icon: "🍌" },
             { id: 25, name: "Wallie Nachos", category: "compartir", price: 10.00, desc: "Salsa brava, guacamole, pico de gallo, queso cheddar gratinado, bacon.", icon: "🌮" },
             { id: 26, name: "Wrap", category: "compartir", price: 7.00, desc: "Pollo, lechuga, tomate, mermelada de cebolla, queso cheddar, alioli. Con Papas Poser.", icon: "🌯" },
             { id: 27, name: "Cheese Quesadilla", category: "compartir", price: 5.00, desc: "Queso cheddar, alioli.", icon: "🧀" },
             { id: 28, name: "Quesadilla de Pollo", category: "compartir", price: 6.50, desc: "Queso cheddar, pollo, alioli.", icon: "🌮" },
 
-            // CERVEZAS
+            // CERVEZAS[cite: 1]
             { id: 29, name: "Cervezas Nacionales", category: "cervezas", price: 2.00, desc: "Balboa Roja, Balboa Ice, Panamá, Panamá Light, Atlas Golden Light.", icon: "🍺" },
             { id: 30, name: "Cervezas Importadas Básicas", category: "cervezas", price: 3.00, desc: "Budweiser, Miller Draft, Modelo, Michelob.", icon: "🍺" },
             { id: 31, name: "Cervezas Importadas Premium A", category: "cervezas", price: 3.50, desc: "Corona, Polar, Quilmes.", icon: "🍺" },
@@ -612,7 +613,7 @@
             { id: 36, name: "Cerveza Fruli", category: "cervezas", price: 5.50, desc: "Cerveza premium Fruli.", icon: "🍓" },
             { id: 37, name: "Cerveza Tropper", category: "cervezas", price: 8.00, desc: "Cerveza especial Tropper de colección.", icon: "💀" },
 
-            // BEBIDAS
+            // BEBIDAS[cite: 1]
             { id: 38, name: "Agua", category: "bebidas", price: 1.00, desc: "Botella de agua fría.", icon: "💧" },
             { id: 39, name: "Soda / Té Lipton", category: "bebidas", price: 1.80, desc: "Lata de soda variada o Té Lipton frío.", icon: "🥤" },
             { id: 40, name: "Licuados de Frutas", category: "bebidas", price: 2.00, desc: "Licuados naturales refrescantes.", icon: "🍓" },
@@ -630,16 +631,18 @@
             container.innerHTML = '';
             products.forEach((p, index) => {
                 const card = document.createElement('div');
-                card.className = 'menu-card';
+                card.className = 'collage-card';
                 card.style.animationDelay = `${index * 0.02}s`;
                 card.innerHTML = `
-                    <div class="card-graphic-frame"><span>${p.icon}</span></div>
-                    <div class="card-body">
-                        <h3>${p.name}</h3>
-                        <p class="card-desc">${p.desc}</p>
-                        <div class="card-footer-layout">
-                            <span class="card-price">$${p.price.toFixed(2)}</span>
-                            <button class="btn-add-graphic" onclick="addToCart(${p.id})">+</button>
+                    <div class="collage-visual"><span>${p.icon}</span></div>
+                    <div class="collage-details">
+                        <div>
+                            <h3>${p.name}</h3>
+                            <p class="collage-desc">${p.desc}</p>
+                        </div>
+                        <div class="collage-actions">
+                            <span class="collage-price">$${p.price.toFixed(2)}</span>
+                            <button class="btn-add-tag" onclick="addToCart(${p.id})">ADD +</button>
                         </div>
                     </div>
                 `;
@@ -648,7 +651,7 @@
         }
 
         function filterCategory(cat) {
-            document.querySelectorAll('.category-tab').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.stencil-tab').forEach(b => b.classList.remove('active'));
             event.target.classList.add('active');
             const container = document.getElementById('menu-items-container');
             container.style.opacity = 0;
@@ -656,7 +659,7 @@
                 if (cat === 'todos') { renderMenu(menuProducts); } 
                 else { renderMenu(menuProducts.filter(p => p.category === cat)); }
                 container.style.opacity = 1;
-            }, 100);
+            }, 120);
         }
 
         function addToCart(id) {
@@ -677,8 +680,8 @@
         function updateUI() {
             const count = cart.reduce((acc, i) => acc + i.qty, 0);
             const orderBar = document.getElementById('order-bar');
-            if (count > 0) { orderBar.classList.add('visible', 'active-pulse'); } 
-            else { orderBar.classList.remove('visible', 'active-pulse'); toggleDrawer(false); }
+            if (count > 0) { orderBar.classList.add('visible', 'pulse-glow'); } 
+            else { orderBar.classList.remove('visible', 'pulse-glow'); toggleConsole(false); }
             
             document.getElementById('cart-badge').innerText = count;
             const body = document.getElementById('drawer-items');
@@ -689,15 +692,15 @@
                 const sub = i.price * i.qty;
                 total += sub;
                 body.innerHTML += `
-                    <div class="drawer-row">
-                        <div class="row-meta">
+                    <div class="console-row">
+                        <div class="row-data">
                             <h4>${i.name}</h4>
                             <span>$${sub.toFixed(2)} (${i.qty} x $${i.price.toFixed(2)})</span>
                         </div>
-                        <div class="row-controls">
-                            <button class="btn-qty-action" onclick="adjustQty(${i.id}, -1)">-</button>
-                            <span class="qty-label">${i.qty}</span>
-                            <button class="btn-qty-action" onclick="adjustQty(${i.id}, 1)">+</button>
+                        <div class="row-triggers">
+                            <button class="btn-qty-trigger" onclick="adjustQty(${i.id}, -1)">-</button>
+                            <span class="qty-val">${i.qty}</span>
+                            <button class="btn-qty-trigger" onclick="adjustQty(${i.id}, 1)">+</button>
                         </div>
                     </div>
                 `;
@@ -705,8 +708,8 @@
             document.getElementById('total-amount').innerText = `$${total.toFixed(2)}`;
         }
 
-        function toggleDrawer(open) {
-            const overlay = document.getElementById('drawer-overlay');
+        function toggleConsole(open) {
+            const overlay = document.getElementById('console-overlay');
             if (open) {
                 overlay.style.display = 'flex';
                 setTimeout(() => overlay.classList.add('active'), 10);
@@ -718,18 +721,18 @@
 
         function submitToWhatsApp() {
             if(cart.length === 0) return;
-            let msg = " Skid & Feed - COMANDA ARMONICA 🛹\n";
-            msg += "📍 Ubicación: Mesa 04\n";
+            let msg = "🛹 *ARMÓNICA SHOP CAFE - COMANDA RAW* 🛹\n";
+            msg += "📍 *Ubicación:* Mesa 04\n";
             msg += "=========================\n";
             let total = 0;
             cart.forEach(i => {
                 const sub = i.price * i.qty;
                 total += sub;
-                msg += `• ${i.qty}x ${i.name} -> $${sub.toFixed(2)}\n`;
+                msg += `• *${i.qty}x* ${i.name} -> _$${sub.toFixed(2)}_\n`;
             });
             msg += "=========================\n";
-            msg += ` Total Cuenta: $${total.toFixed(2)}\n\n`;
-            msg += "Enviado mediante menú interactivo digital QR.";
+            msg += `💰 *TOTAL CUENTA:* $${total.toFixed(2)}\n\n`;
+            msg += "📱 _Comanda procesada vía menú anti-grid interactivo._";
             window.open(`https://wa.me/50760000000?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
