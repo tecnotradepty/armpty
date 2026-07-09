@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Armónica - Underground Graphic Experience</title>
-    <!-- Iconos y Fuentes Premium -->
+    <title>Armónica Shop Cafe - Menú Interactivo</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     
@@ -36,7 +35,7 @@
             padding-bottom: 120px;
             overflow-x: hidden;
             
-            /* DISEÑO GRÁFICO: Patrón geométrico de alta densidad (estilo papel envoltorio del bar) */
+            /* Patrón geométrico de alta densidad inspirado en su envoltorio */
             background-image: 
                 linear-gradient(45deg, #090909 25%, transparent 25%, transparent 75%, #090909 75%, #090909),
                 linear-gradient(45deg, #090909 25%, transparent 25%, transparent 75%, #090909 75%, #090909);
@@ -44,7 +43,7 @@
             background-position: 0 0, 15px 15px;
         }
 
-        /* --- URBAN HEADER (CON GRÁFICOS) --- */
+        /* --- URBAN HEADER --- */
         .shop-header {
             background: linear-gradient(180deg, #000000 0%, rgba(18,18,18,0.9) 100%);
             padding: 50px 20px 30px 20px;
@@ -54,7 +53,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.7);
         }
         
-        /* Línea gráfica de advertencia estilo callejero */
+        /* Línea gráfica de advertencia callejera */
         .shop-header::before {
             content: '';
             position: absolute;
@@ -62,7 +61,6 @@
             background: repeating-linear-gradient(-45deg, #000, #000 10px, var(--skate-yellow) 10px, var(--skate-yellow) 20px);
         }
 
-        /* Isotopo circular neón de la barra */
         .logo-graphic-node {
             width: 85px;
             height: 85px;
@@ -86,7 +84,6 @@
             text-shadow: 0 0 10px rgba(255,255,255,0.5);
         }
 
-        /* Tipografía pesada con efecto de trazo / borde exterior */
         .shop-header h1 {
             font-family: var(--font-urban);
             font-size: 38px;
@@ -114,11 +111,57 @@
             align-items: center;
             gap: 6px;
             margin-top: 15px;
-            transform: rotate(-1.5deg); /* Efecto sticker inclinado */
+            transform: rotate(-1.5deg);
             box-shadow: 3px 3px 0px var(--skate-yellow);
         }
 
-        /* --- CATEGORÍAS ESTILO REVISTA SKATE --- */
+        /* --- HERO PROMO BANNERS (CARRUSEL SLIDER) --- */
+        .promo-slider-container {
+            padding: 20px 15px 10px 15px;
+            overflow-x: auto;
+            display: flex;
+            gap: 12px;
+            scrollbar-width: none;
+        }
+        .promo-slider-container::-webkit-scrollbar { display: none; }
+        
+        .promo-banner {
+            min-width: 280px;
+            height: 140px;
+            border: 2px solid var(--border-grunge);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 15px;
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.5);
+        }
+        .promo-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 100%);
+            z-index: 1;
+        }
+        .promo-text {
+            z-index: 2;
+            position: relative;
+        }
+        .promo-text h2 {
+            font-family: var(--font-urban);
+            font-size: 20px;
+            text-transform: uppercase;
+            color: var(--skate-yellow);
+            line-height: 1;
+            margin-bottom: 2px;
+        }
+        .promo-text p {
+            font-size: 11px;
+            color: var(--text-light);
+            font-weight: bold;
+        }
+
+        /* --- CATEGORÍAS --- */
         .categories-slider {
             display: flex;
             gap: 8px;
@@ -156,7 +199,7 @@
             transform: translateY(-2px);
         }
 
-        /* --- POSTER MENU GRID --- */
+        /* --- MENU GRID --- */
         .menu-grid {
             padding: 20px 15px;
             display: grid;
@@ -185,7 +228,6 @@
             border-color: var(--skate-yellow);
         }
 
-        /* Contenedor gráfico con iluminación interna */
         .card-graphic-frame {
             width: 100%;
             height: 120px;
@@ -199,7 +241,6 @@
             overflow: hidden;
         }
         
-        /* Gráfico de retícula de fondo para el look revista */
         .card-graphic-frame::before {
             content: '';
             position: absolute;
@@ -249,7 +290,6 @@
             text-shadow: 1px 1px 0px #000;
         }
         
-        /* Botón estilo bloque gráfico */
         .btn-add-graphic {
             background-color: transparent;
             color: var(--text-light);
@@ -271,6 +311,60 @@
             transform: scale(1.1);
         }
 
+        /* --- COMMUNITY SECTION (INSTAGRAM & AMBIENTE) --- */
+        .instagram-section {
+            padding: 30px 15px;
+            background: #000;
+            border-top: 2px solid var(--border-grunge);
+            text-align: center;
+        }
+        .instagram-section h2 {
+            font-family: var(--font-urban);
+            font-size: 24px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        .btn-instagram-sticker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--skate-yellow);
+            color: #000;
+            text-decoration: none;
+            padding: 12px 24px;
+            font-family: var(--font-urban);
+            font-size: 18px;
+            text-transform: uppercase;
+            box-shadow: 4px 4px 0px var(--text-light);
+            margin-bottom: 25px;
+            transition: all 0.2s ease;
+        }
+        .btn-instagram-sticker:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px var(--text-light);
+        }
+        
+        .ambient-mosaic {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .ambient-photo {
+            width: 100%;
+            height: 130px;
+            border: 1px solid var(--border-grunge);
+            background-size: cover;
+            background-position: center;
+            /* Filtros de imagen estilo catálogo rústico/grunge */
+            filter: grayscale(20%) contrast(110%);
+            transition: all 0.3s ease;
+        }
+        .ambient-photo:active {
+            filter: grayscale(0%) contrast(100%);
+            transform: scale(0.98);
+        }
+
         /* --- FLOATING ORDER CONSOLE --- */
         .bottom-order-console {
             position: fixed;
@@ -287,17 +381,12 @@
             transform: translateY(150%);
             transition: transform 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
-        .bottom-order-console.visible {
-            transform: translateY(0);
-        }
-        .bottom-order-console.active-pulse {
-            animation: consoleGlow 1.5s infinite alternate;
-        }
+        .bottom-order-console.visible { transform: translateY(0); }
+        .bottom-order-console.active-pulse { animation: consoleGlow 1.5s infinite alternate; }
         @keyframes consoleGlow {
             0% { box-shadow: 0 15px 40px rgba(0,0,0,0.9); }
             100% { box-shadow: 0 0 25px rgba(255, 204, 0, 0.7); }
         }
-
         .bottom-order-console span {
             font-family: var(--font-urban);
             font-size: 18px;
@@ -333,9 +422,7 @@
             transform: translateY(100%);
             transition: transform 0.3s ease-out;
         }
-        .drawer-overlay.active .drawer-surface {
-            transform: translateY(0);
-        }
+        .drawer-overlay.active .drawer-surface { transform: translateY(0); }
         
         .drawer-title-bar {
             display: flex;
@@ -350,20 +437,10 @@
             font-size: 24px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: var(--text-light);
         }
-        .btn-close-console {
-            background: none;
-            border: none;
-            color: #444;
-            font-size: 36px;
-            cursor: pointer;
-        }
+        .btn-close-console { background: none; border: none; color: #444; font-size: 36px; cursor: pointer; }
 
-        .drawer-list {
-            overflow-y: auto;
-            flex-grow: 1;
-        }
+        .drawer-list { overflow-y: auto; flex-grow: 1; }
         .drawer-row {
             display: flex;
             justify-content: space-between;
@@ -371,41 +448,12 @@
             padding: 16px 0;
             border-bottom: 1px solid #111;
         }
-        .row-meta h4 {
-            font-family: var(--font-urban);
-            font-size: 16px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .row-meta span {
-            font-size: 13px;
-            color: var(--skate-yellow);
-            font-weight: 700;
-        }
-        .row-controls {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .btn-qty-action {
-            background: #111;
-            border: 1px solid var(--border-grunge);
-            color: #fff;
-            width: 32px;
-            height: 32px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .btn-qty-action:active {
-            background-color: var(--skate-yellow);
-            color: #000;
-        }
-        .qty-label {
-            font-family: var(--font-urban);
-            font-size: 18px;
-            min-width: 20px;
-            text-align: center;
-        }
+        .row-meta h4 { font-family: var(--font-urban); font-size: 16px; text-transform: uppercase; }
+        .row-meta span { font-size: 13px; color: var(--skate-yellow); font-weight: 700; }
+        .row-controls { display: flex; align-items: center; gap: 12px; }
+        .btn-qty-action { background: #111; border: 1px solid var(--border-grunge); color: #fff; width: 32px; height: 32px; font-weight: bold; }
+        .btn-qty-action:active { background-color: var(--skate-yellow); color: #000; }
+        .qty-label { font-family: var(--font-urban); font-size: 18px; min-width: 20px; text-align: center; }
 
         .checkout-area { margin-top: auto; padding-top: 20px; }
         .total-row {
@@ -415,7 +463,6 @@
             font-size: 22px;
             margin-bottom: 20px;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
         .total-row .val { color: var(--skate-yellow); font-size: 26px; }
         
@@ -434,13 +481,11 @@
             gap: 12px;
             cursor: pointer;
             text-transform: uppercase;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
         }
     </style>
 </head>
 <body>
 
-    <!-- Grafismo de Cabecera -->
     <header class="shop-header">
         <div class="logo-graphic-node">
             <span>Λ</span>
@@ -451,7 +496,23 @@
         </div>
     </header>
 
-    <!-- Pestañas de Navegación Gráficas -->
+    <section class="promo-slider-container">
+        <div class="promo-banner" style="background-image: url('images/241736119_1611137669093990_7420467522005539851_n.jpg');">
+            <div class="promo-overlay"></div>
+            <div class="promo-text">
+                <h2>TRICKS & BEERS</h2>
+                <p>Las mejores Burgers con Cerveza Artesanal</p>
+            </div>
+        </div>
+        <div class="promo-banner" style="background-image: url('images/440166777_18429949339049351_6790974657106025786_n.jpg');">
+            <div class="promo-overlay"></div>
+            <div class="promo-text">
+                <h2>WINGS SESSION</h2>
+                <p>Alitas y Boneless crujientes listos</p>
+            </div>
+        </div>
+    </section>
+
     <nav class="categories-slider">
         <button class="category-tab active" onclick="filterCategory('todos')">All Menu</button>
         <button class="category-tab" onclick="filterCategory('hamburguesas')">Hamburguesas</button>
@@ -463,16 +524,24 @@
         <button class="category-tab" onclick="filterCategory('bebidas')">Bebidas</button>
     </nav>
 
-    <!-- Cuadrícula de Contenido Estilo Poster -->
     <main class="menu-grid" id="menu-items-container"></main>
 
-    <!-- Consola del Carrito Flotante -->
+    <section class="instagram-section">
+        <h2>JOIN THE CLAN</h2>
+        <a href="https://www.instagram.com/armonicashop_" target="_blank" class="btn-instagram-sticker">
+            <i class="fa-brands fa-instagram"></i> @armonicashop_
+        </a>
+        <div class="ambient-mosaic">
+            <div class="ambient-photo" style="background-image: url('images/451986315_18444537361049351_551687169489063687_n.jpg');"></div>
+            <div class="ambient-photo" style="background-image: url('images/472867054_18477736027049351_386756570900074606_n.jpg');"></div>
+        </div>
+    </section>
+
     <div class="bottom-order-console" id="order-bar" onclick="toggleDrawer(true)">
         <span><i class="fa-solid fa-bolt"></i> REVIEW TOTAL COMMAND</span>
         <mark class="graphic-badge" id="cart-badge">0</mark>
     </div>
 
-    <!-- Filtro Oscuro de Despliegue -->
     <div class="drawer-overlay" id="drawer-overlay">
         <div class="drawer-surface">
             <div class="drawer-title-bar">
@@ -493,9 +562,8 @@
     </div>
 
     <script>
-        // Carga de datos íntegra del documento de Armónica[cite: 1]
         const menuProducts = [
-            // HAMBURGUESAS[cite: 1]
+            // HAMBURGUESAS
             { id: 1, name: "Slappy", category: "hamburguesas", price: 5.00, desc: "Queso hamburguesa 1/4 de libra.", icon: "🍔" },
             { id: 2, name: "Ollie 180", category: "hamburguesas", price: 6.00, desc: "Tapas de plátano, 1/4 de libra, bacon, queso.", icon: "🛹" },
             { id: 3, name: "Ollie 360", category: "hamburguesas", price: 7.00, desc: "1/4 de libra, queso, tomate, cebolla y lechuga.", icon: "🍔" },
@@ -507,33 +575,33 @@
             { id: 9, name: "360 Flip", category: "hamburguesas", price: 10.00, desc: "1/4 de libra, queso, tajada, tomate, cebolla y lechuga.", icon: "🛹" },
             { id: 10, name: "Freestyle", category: "hamburguesas", price: 12.00, desc: "Doble 1/4 libra, queso, bacon, tomate, cebolla y lechuga.", icon: "☠️" },
 
-            // WINGS & BONELESS[cite: 1]
+            // WINGS & BONELESS
             { id: 11, name: "Cinco Alitas", category: "wings", price: 5.00, desc: "5 piezas de alitas tradicionales crujientes.", icon: "🍗" },
             { id: 12, name: "Cinco Boneless", category: "wings", price: 6.99, desc: "5 jugosos trozos de pechuga deshuesada.", icon: "🍗" },
             { id: 13, name: "Diez Alitas", category: "wings", price: 10.00, desc: "10 alitas perfectas para la sesión.", icon: "🔥" },
             { id: 14, name: "Diez Boneless", category: "wings", price: 11.99, desc: "10 piezas de boneless listos para disfrutar.", icon: "🔥" },
 
-            // VEGGIES[cite: 1]
+            // VEGGIES
             { id: 15, name: "Switch", category: "veggies", price: 8.00, desc: "Vegetariana de garbanzo, queso mozzarella, salsa alioli, mermelada de cebolla y onion strips.", icon: "🌱" },
             { id: 16, name: "Switch 360 Flip", category: "veggies", price: 12.00, desc: "Vegetariana de garbanzo, queso mozzarella, tomate y lechuga (Doble porción).", icon: "🌱" },
             { id: 17, name: "Switch Heel", category: "veggies", price: 9.00, desc: "Vegetariana de garbanzo, queso mozzarella, tomate y lechuga.", icon: "🌱" },
             { id: 18, name: "Switch 180", category: "veggies", price: 5.00, desc: "Cinco falafel de garbanzo.", icon: "🧆" },
             { id: 19, name: "Switch 360", category: "veggies", price: 10.00, desc: "Diez falafel de garbanzo.", icon: "🧆" },
 
-            // TRICKS (PAPAS)[cite: 1]
+            // TRICKS (PAPAS)
             { id: 20, name: "Papas Poser", category: "tricks", price: 3.50, desc: "Finas hierbas, sal y pimienta. ¡Las mejores papas!", icon: "🍟" },
             { id: 21, name: "Papas Pro", category: "tricks", price: 3.50, desc: "Canela, paprika, sal rosada del Himalaya.", icon: "🍟" },
             { id: 22, name: "Papas Pop", category: "tricks", price: 4.50, desc: "Finas hierbas, sal, pimienta y queso cheddar gratinado.", icon: "🧀" },
             { id: 23, name: "Imposible Papas", category: "tricks", price: 8.50, desc: "Salsa brava, guacamole, pico de gallo, queso cheddar gratinado, bacon.", icon: "🥓" },
 
-            // COMPARTIR / ENTRADAS[cite: 1]
+            // COMPARTIR
             { id: 24, name: "Copita de Patacón", category: "compartir", price: 5.00, desc: "4 cestas de patatón, alioli, pico de gallo, queso cheddar gratinado, bacon.", icon: "🍌" },
             { id: 25, name: "Wallie Nachos", category: "compartir", price: 10.00, desc: "Salsa brava, guacamole, pico de gallo, queso cheddar gratinado, bacon.", icon: "🌮" },
             { id: 26, name: "Wrap", category: "compartir", price: 7.00, desc: "Pollo, lechuga, tomate, mermelada de cebolla, queso cheddar, alioli. Con Papas Poser.", icon: "🌯" },
             { id: 27, name: "Cheese Quesadilla", category: "compartir", price: 5.00, desc: "Queso cheddar, alioli.", icon: "🧀" },
             { id: 28, name: "Quesadilla de Pollo", category: "compartir", price: 6.50, desc: "Queso cheddar, pollo, alioli.", icon: "🌮" },
 
-            // CERVEZAS[cite: 1]
+            // CERVEZAS
             { id: 29, name: "Cervezas Nacionales", category: "cervezas", price: 2.00, desc: "Balboa Roja, Balboa Ice, Panamá, Panamá Light, Atlas Golden Light.", icon: "🍺" },
             { id: 30, name: "Cervezas Importadas Básicas", category: "cervezas", price: 3.00, desc: "Budweiser, Miller Draft, Modelo, Michelob.", icon: "🍺" },
             { id: 31, name: "Cervezas Importadas Premium A", category: "cervezas", price: 3.50, desc: "Corona, Polar, Quilmes.", icon: "🍺" },
@@ -544,7 +612,7 @@
             { id: 36, name: "Cerveza Fruli", category: "cervezas", price: 5.50, desc: "Cerveza premium Fruli.", icon: "🍓" },
             { id: 37, name: "Cerveza Tropper", category: "cervezas", price: 8.00, desc: "Cerveza especial Tropper de colección.", icon: "💀" },
 
-            // BEBIDAS NO ALCOHÓLICAS Y CAFÉ[cite: 1]
+            // BEBIDAS
             { id: 38, name: "Agua", category: "bebidas", price: 1.00, desc: "Botella de agua fría.", icon: "💧" },
             { id: 39, name: "Soda / Té Lipton", category: "bebidas", price: 1.80, desc: "Lata de soda variada o Té Lipton frío.", icon: "🥤" },
             { id: 40, name: "Licuados de Frutas", category: "bebidas", price: 2.00, desc: "Licuados naturales refrescantes.", icon: "🍓" },
@@ -582,16 +650,11 @@
         function filterCategory(cat) {
             document.querySelectorAll('.category-tab').forEach(b => b.classList.remove('active'));
             event.target.classList.add('active');
-            
             const container = document.getElementById('menu-items-container');
             container.style.opacity = 0;
-            
             setTimeout(() => {
-                if (cat === 'todos') {
-                    renderMenu(menuProducts);
-                } else {
-                    renderMenu(menuProducts.filter(p => p.category === cat));
-                }
+                if (cat === 'todos') { renderMenu(menuProducts); } 
+                else { renderMenu(menuProducts.filter(p => p.category === cat)); }
                 container.style.opacity = 1;
             }, 100);
         }
@@ -614,16 +677,10 @@
         function updateUI() {
             const count = cart.reduce((acc, i) => acc + i.qty, 0);
             const orderBar = document.getElementById('order-bar');
-            
-            if (count > 0) {
-                orderBar.classList.add('visible', 'active-pulse');
-            } else {
-                orderBar.classList.remove('visible', 'active-pulse');
-                toggleDrawer(false);
-            }
+            if (count > 0) { orderBar.classList.add('visible', 'active-pulse'); } 
+            else { orderBar.classList.remove('visible', 'active-pulse'); toggleDrawer(false); }
             
             document.getElementById('cart-badge').innerText = count;
-
             const body = document.getElementById('drawer-items');
             body.innerHTML = '';
             let total = 0;
@@ -661,20 +718,18 @@
 
         function submitToWhatsApp() {
             if(cart.length === 0) return;
-            
-            let msg = "🛹 *ARMÓNICA SHOP CAFE - NUEVA ORDEN* 🛹\n";
-            msg += "📍 *Ubicación:* Mesa 04\n";
+            let msg = " Skid & Feed - COMANDA ARMONICA 🛹\n";
+            msg += "📍 Ubicación: Mesa 04\n";
             msg += "=========================\n";
             let total = 0;
             cart.forEach(i => {
                 const sub = i.price * i.qty;
                 total += sub;
-                msg += `• *${i.qty}x* ${i.name} -> _$${sub.toFixed(2)}_\n`;
+                msg += `• ${i.qty}x ${i.name} -> $${sub.toFixed(2)}\n`;
             });
             msg += "=========================\n";
-            msg += `💰 *TOTAL CUENTA:* $${total.toFixed(2)}\n\n`;
-            msg += "📱 _Comanda generada desde el prototipo de menú interactivo._";
-
+            msg += ` Total Cuenta: $${total.toFixed(2)}\n\n`;
+            msg += "Enviado mediante menú interactivo digital QR.";
             window.open(`https://wa.me/50760000000?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
