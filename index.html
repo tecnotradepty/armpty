@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nativa Bistro - Menú Interactivo</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Iconos limpios -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Encabezado / Logo -->
+    <header class="header">
+        <div class="logo-container">
+            <span class="logo-icon">🌿</span>
+            <h1>Nativa <span class="accent">Bistro</span></h1>
+        </div>
+        <p class="subtitle">Comida real • Mesa 04</p>
+    </header>
+
+    <!-- Barra de Categorías Fija -->
+    <nav class="categories-nav">
+        <button class="cat-btn active" onclick="filterCategory('todos')">Todos</button>
+        <button class="cat-btn" onclick="filterCategory('bowls')">Bowls</button>
+        <button class="cat-btn" onclick="filterCategory('wraps')">Wraps & Subs</button>
+        <button class="cat-btn" onclick="filterCategory('bebidas')">Bebidas</button>
+    </nav>
+
+    <!-- Contenedor de Platos -->
+    <main class="menu-container" id="menu-grid">
+        <!-- Los platos se inyectarán dinámicamente con JavaScript -->
+    </main>
+
+    <!-- Botón Flotante del Carrito -->
+    <div class="floating-cart" id="floating-cart" onclick="toggleCartModal(true)">
+        <i class="fa-solid fa-basket-shopping"></i>
+        <span class="cart-count" id="cart-count">0</span>
+    </div>
+
+    <!-- Modal del Carrito -->
+    <div class="cart-modal" id="cart-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Tu Pedido</h2>
+                <button class="close-btn" onclick="toggleCartModal(false)">&times;</button>
+            </div>
+            
+            <div class="cart-items" id="cart-items">
+                <!-- Items del carrito inyectados por JS -->
+            </div>
+
+            <div class="modal-footer">
+                <div class="total-container">
+                    <span>Total estimado:</span>
+                    <span class="total-price" id="total-price">$0.00</span>
+                </div>
+                <button class="whatsapp-btn" onclick="sendOrderWhatsApp()">
+                    <i class="fa-brands fa-whatsapp"></i> Confirmar y Enviar Pedido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script href="script.js" src="script.js"></script>
+</body>
+</html>
