@@ -4,69 +4,530 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Street Bites - Menú Interactivo</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Iconos para la vibra urbana -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #121212;       /* Negro asfalto */
+            --surface: #1e1e1e;       /* Gris contenedor */
+            --border-color: #2f2f2f;  /* Gris industrial */
+            --accent-neon: #ffde17;   /* Amarillo Skate Urbano */
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --whatsapp-color: #25d366;
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-stack);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            padding-bottom: 90px;
+        }
+
+        /* --- HEADER --- */
+        .urban-header {
+            background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(18,18,18,1) 100%);
+            padding: 30px 20px 15px 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+        }
+        .brand-badge {
+            background-color: var(--accent-neon);
+            color: #000;
+            font-weight: 900;
+            font-size: 11px;
+            letter-spacing: 2px;
+            padding: 4px 10px;
+            display: inline-block;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        .urban-header h1 {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+        }
+        .urban-header h1 span {
+            color: var(--accent-neon);
+        }
+        .table-indicator {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        /* --- CATEGORÍAS DESLIZANTES --- */
+        .categories-slider {
+            display: flex;
+            gap: 10px;
+            padding: 15px 20px;
+            background-color: var(--bg-dark);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            overflow-x: auto;
+            scrollbar-width: none;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .categories-slider::-webkit-scrollbar { display: none; }
+
+        .tab-btn {
+            background: var(--surface);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 10px 18px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .tab-btn.active {
+            background-color: var(--accent-neon);
+            color: #000;
+            border-color: var(--accent-neon);
+        }
+
+        /* --- MEDU GRID --- */
+        .menu-grid {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+            gap: 16px;
+        }
+
+        .dish-card {
+            background-color: var(--surface);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .dish-img-container {
+            width: 100%;
+            height: 110px;
+            background: #151515;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .dish-info {
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .dish-info h3 {
+            font-size: 15px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.3px;
+            margin-bottom: 4px;
+        }
+        .dish-desc {
+            font-size: 11px;
+            color: var(--text-muted);
+            line-height: 1.4;
+            margin-bottom: 12px;
+            flex-grow: 1;
+        }
+        .dish-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+        .dish-price {
+            font-weight: 900;
+            color: var(--accent-neon);
+            font-size: 16px;
+        }
+        .add-btn {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--text-main);
+            width: 30px;
+            height: 30px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+        .add-btn:active {
+            background-color: var(--text-main);
+            color: #000;
+        }
+
+        /* --- CARRITO FLOTANTE --- */
+        .cart-trigger {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background-color: var(--accent-neon);
+            color: #000;
+            padding: 16px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            font-weight: 900;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 20;
+            text-transform: uppercase;
+        }
+        .badge-count {
+            background-color: #000;
+            color: var(--accent-neon);
+            font-size: 12px;
+            font-weight: 900;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* --- PANEL MODAL DEL CARRITO --- */
+        .cart-drawer {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            backdrop-filter: blur(4px);
+            z-index: 30;
+            display: none;
+            align-items: flex-end;
+        }
+        .drawer-surface {
+            background-color: var(--surface);
+            width: 100%;
+            max-height: 85vh;
+            border-top-left-radius: 16px;
+            border-top-right-radius: 16px;
+            border-top: 2px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+        .drawer-header h2 {
+            font-size: 18px;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+        .drawer-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .drawer-body {
+            overflow-y: auto;
+            flex-grow: 1;
+            margin-bottom: 20px;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .item-details h4 {
+            font-size: 14px;
+            text-transform: uppercase;
+            font-weight: 800;
+            margin-bottom: 2px;
+        }
+        .item-details span {
+            font-size: 13px;
+            color: var(--accent-neon);
+            font-weight: 700;
+        }
+        .item-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .qty-btn {
+            background: #2b2b2b;
+            border: 1px solid var(--border-color);
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .drawer-footer { margin-top: auto; }
+        .summary-line {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 900;
+            font-size: 18px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .price-total { color: var(--accent-neon); }
+        .btn-whatsapp-send {
+            width: 100%;
+            background-color: var(--whatsapp-color);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: 900;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Encabezado Urbano (Estilo Skate/Street) -->
+    <!-- Header -->
     <header class="urban-header">
-        <div class="brand-badge">STREET DECK</div>
-        <h1>BURGDERS, WINGS <span class="highlight">& TRICKS</span></h1>
-        <p class="table-indicator"><i class="fa-solid fa-location-dot"></i> Pedidos desde la Mesa 04</p>
+        <div class="brand-badge">Armónica Proyect</div>
+        <h1>HAMBURGUESAS, WINGS <span>& MÁS!</span></h1>
+        <p class="table-indicator"><i class="fa-solid fa-location-dot"></i> Pedido desde Mesa Real • Código QR</p>
     </header>
 
-    <!-- Barra Navegación de Categorías (Fija al hacer Scroll) -->
+    <!-- Barra de Categorías -->
     <nav class="categories-slider">
-        <button class="tab-btn active" onclick="filterCategory('todos')">Todo el Menú</button>
-        <button class="tab-btn" onclick="filterCategory('burgers')">Burgers</button>
+        <button class="tab-btn active" onclick="filterCategory('todos')">Todos</button>
+        <button class="tab-btn" onclick="filterCategory('hamburguesas')">Hamburguesas</button>
         <button class="tab-btn" onclick="filterCategory('wings')">Wings & Boneless</button>
         <button class="tab-btn" onclick="filterCategory('veggies')">Veggies</button>
         <button class="tab-btn" onclick="filterCategory('tricks')">Tricks (Papas)</button>
-        <button class="tab-btn" onclick="filterCategory('snacks')">Snacks</button>
-        <button class="tab-btn" onclick="filterCategory('drinks')">Drinks</button>
+        <button class="tab-btn" onclick="filterCategory('compartir')">Para Compartir</button>
+        <button class="tab-btn" onclick="filterCategory('cervezas')">Cervezas</button>
+        <button class="tab-btn" onclick="filterCategory('bebidas')">Bebidas No Alc.</button>
     </nav>
 
-    <!-- Grilla Principal del Menú -->
-    <main class="menu-grid" id="menu-items-container">
-        <!-- Los productos urbanos se inyectarán dinámicamente mediante JavaScript -->
-    </main>
+    <!-- Grilla del Menú -->
+    <main class="menu-grid" id="menu-items-container"></main>
 
-    <!-- Botón Flotante del Carrito Estilo Urbano -->
+    <!-- Carrito Flotante -->
     <div class="cart-trigger" id="cart-trigger" onclick="toggleCart(true)">
         <div class="badge-count" id="cart-badge">0</div>
-        <i class="fa-solid fa-fire"></i>
-        <span>REVISAR ORDEN</span>
+        <i class="fa-solid fa-wallet"></i>
+        <span>Ver Mi Orden</span>
     </div>
 
-    <!-- Ventana Modal del Carrito (Desliza desde abajo) -->
+    <!-- Cajón del Carrito -->
     <div class="cart-drawer" id="cart-drawer">
         <div class="drawer-surface">
             <div class="drawer-header">
-                <h2><i class="fa-solid fa-list-check"></i> Tu Comanda</h2>
+                <h2><i class="fa-solid fa-receipt"></i> Tu Comanda</h2>
                 <button class="drawer-close" onclick="toggleCart(false)">&times;</button>
             </div>
-            
-            <!-- Items de la Orden -->
-            <div class="drawer-body" id="drawer-items">
-                <!-- Inyección vía JS -->
-            </div>
-
-            <!-- Footer con totales y botón de acción masiva -->
+            <div class="drawer-body" id="drawer-items"></div>
             <div class="drawer-footer">
                 <div class="summary-line">
-                    <span>Subtotal:</span>
+                    <span>Total de la Cuenta:</span>
                     <span class="price-total" id="total-amount">$0.00</span>
                 </div>
                 <button class="btn-whatsapp-send" onclick="submitToWhatsApp()">
-                    <i class="fa-brands fa-whatsapp"></i> ENVIAR COMANDA A COCINA
+                    <i class="fa-brands fa-whatsapp"></i> ENVIAR COMANDA POR WHATSAPP
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Enlace al archivo lógico -->
-    <script src="script.js"></script>
+    <script>
+        // Data estructurada 100% fiel al PDF provisto
+        const menuProducts = [
+            // HAMBURGUESAS
+            { id: 1, name: "Slappy", category: "hamburguesas", price: 5.00, desc: "Queso hamburguesa 1/4 de libra.", icon: "🍔" },
+            { id: 2, name: "Ollie 180", category: "hamburguesas", price: 6.00, desc: "Tapas de plátano, 1/4 de libra, bacon, queso.", icon: "🍌" },
+            { id: 3, name: "Ollie 360", category: "hamburguesas", price: 7.00, desc: "1/4 de libra, queso, tomate, cebolla y lechuga.", icon: "🍔" },
+            { id: 4, name: "Kick Flip", category: "hamburguesas", price: 7.00, desc: "1/4 de libra, queso, champiñones salteados, tomate, cebolla y lechuga.", icon: "🍄" },
+            { id: 5, name: "Hard Flip", category: "hamburguesas", price: 8.00, desc: "1/4 de libra, queso, bacon, tomate, cebolla y lechuga.", icon: "🥓" },
+            { id: 6, name: "Varial Flip", category: "hamburguesas", price: 8.00, desc: "1/4 de libra, queso, bacon, huevo, tomate, cebolla y lechuga.", icon: "🍳" },
+            { id: 7, name: "Nollie Flip", category: "hamburguesas", price: 10.00, desc: "1/4 de libra, queso, bacon, guacamole, pico de gallo.", icon: "🥑" },
+            { id: 8, name: "Heel Flip", category: "hamburguesas", price: 10.00, desc: "1/4 de libra, queso mozzarella, piña y alioli.", icon: "🍍" },
+            { id: 9, name: "360 Flip", category: "hamburguesas", price: 10.00, desc: "1/4 de libra, queso, tajada, tomate, cebolla y lechuga.", icon: "🍔" },
+            { id: 10, name: "Freestyle", category: "hamburguesas", price: 12.00, desc: "Doble 1/4 libra, queso, bacon, tomate, cebolla y lechuga.", icon: "👑" },
+
+            // WINGS & BONELESS
+            { id: 11, name: "Cinco Alitas", category: "wings", price: 5.00, desc: "5 piezas de alitas tradicionales crujientes.", icon: "🍗" },
+            { id: 12, name: "Cinco Boneless", category: "wings", price: 6.99, desc: "5 jugosos trozos de pechuga deshuesada.", icon: "🍗" },
+            { id: 13, name: "Diez Alitas", category: "wings", price: 10.00, desc: "10 alitas perfectas para la sesión.", icon: "🔥" },
+            { id: 14, name: "Diez Boneless", category: "wings", price: 11.99, desc: "10 piezas de boneless listos para disfrutar.", icon: "🔥" },
+
+            // VEGGIES
+            { id: 15, name: "Switch", category: "veggies", price: 8.00, desc: "Vegetariana de garbanzo, queso mozzarella, salsa alioli, mermelada de cebolla y onion strips.", icon: "🌱" },
+            { id: 16, name: "Switch 360 Flip", category: "veggies", price: 12.00, desc: "Vegetariana de garbanzo, queso mozzarella, tomate y lechuga (Doble porción).", icon: "🌱" },
+            { id: 17, name: "Switch Heel", category: "veggies", price: 9.00, desc: "Vegetariana de garbanzo, queso mozzarella, tomate y lechuga.", icon: "🌱" },
+            { id: 18, name: "Switch 180", category: "veggies", price: 5.00, desc: "Cinco falafel de garbanzo.", icon: "🧆" },
+            { id: 19, name: "Switch 360", category: "veggies", price: 10.00, desc: "Diez falafel de garbanzo.", icon: "🧆" },
+
+            // TRICKS (PAPAS)
+            { id: 20, name: "Papas Poser", category: "tricks", price: 3.50, desc: "Finas hierbas, sal y pimienta. ¡Las mejores papas!", icon: "🍟" },
+            { id: 21, name: "Papas Pro", category: "tricks", price: 3.50, desc: "Canela, paprika, sal rosada del Himalaya.", icon: "🍟" },
+            { id: 22, name: "Papas Pop", category: "tricks", price: 4.50, desc: "Finas hierbas, sal, pimienta y queso cheddar gratinado.", icon: "🧀" },
+            { id: 23, name: "Imposible Papas", category: "tricks", price: 8.50, desc: "Salsa brava, guacamole, pico de gallo, queso cheddar gratinado, bacon.", icon: "🥓" },
+
+            // COMPARTIR / ENTRADAS
+            { id: 24, name: "Copita de Patacón", category: "compartir", price: 5.00, desc: "4 cestas de patatón, alioli, pico de gallo, queso cheddar gratinado, bacon.", icon: "🍌" },
+            { id: 25, name: "Wallie Nachos", category: "compartir", price: 10.00, desc: "Salsa brava, guacamole, pico de gallo, queso cheddar gratinado, bacon.", icon: "🌮" },
+            { id: 26, name: "Wrap", category: "compartir", price: 7.00, desc: "Pollo, lechuga, tomate, mermelada de cebolla, queso cheddar, alioli. Acompañamiento Papas Poser.", icon: "🌯" },
+            { id: 27, name: "Cheese Quesadilla", category: "compartir", price: 5.00, desc: "Queso cheddar, alioli.", icon: "🧀" },
+            { id: 28, name: "Quesadilla de Pollo", category: "compartir", price: 6.50, desc: "Queso cheddar, pollo, alioli.", icon: "🌮" },
+
+            // CERVEZAS
+            { id: 29, name: "Nacionales (Balboa / Panamá / Atlas)", category: "cervezas", price: 2.00, desc: "Balboa Roja, Balboa Ice, Panamá, Panamá Light, Atlas Golden Light.", icon: "🍺" },
+            { id: 30, name: "Importadas Básicas", category: "cervezas", price: 3.00, desc: "Budweiser, Miller Draft, Modelo, Michelob.", icon: "🍺" },
+            { id: 31, name: "Importadas Premium A", category: "cervezas", price: 3.50, desc: "Corona, Polar, Quilmes.", icon: "🍺" },
+            { id: 32, name: "Importadas Premium B", category: "cervezas", price: 4.00, desc: "BlueMoon, Estrella Damm, Estrella Galicia, Stella Artois, Daura Damm.", icon: "🍺" },
+            { id: 33, name: "Importadas Premium C", category: "cervezas", price: 4.50, desc: "Voll Damm, Heineken.", icon: "🍺" },
+            { id: 34, name: "Cervezas Artesanales Locales", category: "cervezas", price: 5.00, desc: "Casa Bruja, Central, Mulata, Clandestina, La Murga, Cervecería Maestra.", icon: "🍻" },
+            { id: 35, name: "Artesanales Especiales (Honey Dew / Belhaven)", category: "cervezas", price: 5.00, desc: "Honey Dew, Belhaven.", icon: "🍻" },
+            { id: 36, name: "Cerveza Fruli", category: "cervezas", price: 5.50, desc: "Cerveza premium Fruli.", icon: "🍓" },
+            { id: 37, name: "Cerveza Tropper", category: "cervezas", price: 8.00, desc: "Cerveza especial Tropper de colección.", icon: "💀" },
+
+            // BEBIDAS NO ALCOHÓLICAS Y CAFÉ
+            { id: 38, name: "Agua", category: "bebidas", price: 1.00, desc: "Botella de agua fría.", icon: "💧" },
+            { id: 39, name: "Soda / Té Lipton", category: "bebidas", price: 1.80, desc: "Lata de soda variada o Té Lipton frío.", icon: "🥤" },
+            { id: 40, name: "Licuados de Frutas", category: "bebidas", price: 2.00, desc: "Licuados naturales refrescantes.", icon: "🍓" },
+            { id: 41, name: "Batidos de Frutas / Limonada", category: "bebidas", price: 2.50, desc: "Frutas naturales con agua o Limonada clásica.", icon: "🍋" },
+            { id: 42, name: "Limonada con Hierba Buena / Té Infusión Frío", category: "bebidas", price: 3.50, desc: "Limonada con hierba buena fresca o infusión helada.", icon: "🌿" },
+            { id: 43, name: "Café Americano / Cappuccino / Latte / Vainilla", category: "bebidas", price: 2.50, desc: "Café caliente preparado al instante.", icon: "☕" },
+            { id: 44, name: "Café con Leche de Almendra / Chocolate Caliente", category: "bebidas", price: 3.00, desc: "Opciones calientes cremosas.", icon: "☕" },
+            { id: 45, name: "Moccachino", category: "bebidas", price: 3.50, desc: "Café espresso, leche y chocolate gourmet.", icon: "🍫" }
+        ];
+
+        let cart = [];
+
+        function renderMenu(products) {
+            const container = document.getElementById('menu-items-container');
+            container.innerHTML = '';
+            products.forEach(p => {
+                container.innerHTML += `
+                    <div class="dish-card">
+                        <div class="dish-img-container">${p.icon}</div>
+                        <div class="dish-info">
+                            <h3>${p.name}</h3>
+                            <p class="dish-desc">${p.desc}</p>
+                            <div class="dish-footer">
+                                <span class="dish-price">$${p.price.toFixed(2)}</span>
+                                <button class="add-btn" onclick="addToCart(${p.id})">+</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function filterCategory(cat) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            if (cat === 'todos') {
+                renderMenu(menuProducts);
+            } else {
+                renderMenu(menuProducts.filter(p => p.category === cat));
+            }
+        }
+
+        function addToCart(id) {
+            const product = menuProducts.find(p => p.id === id);
+            const inCart = cart.find(item => item.id === id);
+            if (inCart) { inCart.qty++; } else { cart.push({...product, qty: 1}); }
+            updateUI();
+        }
+
+        function adjustQty(id, amount) {
+            const item = cart.find(p => p.id === id);
+            if (!item) return;
+            item.qty += amount;
+            if (item.qty <= 0) cart = cart.filter(p => p.id !== id);
+            updateUI();
+        }
+
+        function updateUI() {
+            const count = cart.reduce((acc, i) => acc + i.qty, 0);
+            document.getElementById('cart-badge').innerText = count;
+
+            const body = document.getElementById('drawer-items');
+            body.innerHTML = '';
+            let total = 0;
+
+            cart.forEach(i => {
+                const sub = i.price * i.qty;
+                total += sub;
+                body.innerHTML += `
+                    <div class="cart-item">
+                        <div class="item-details">
+                            <h4>${i.name}</h4>
+                            <span>$${sub.toFixed(2)} (${i.qty} x $${i.price.toFixed(2)})</span>
+                        </div>
+                        <div class="item-actions">
+                            <button class="qty-btn" onclick="adjustQty(${i.id}, -1)">-</button>
+                            <span>${i.qty}</span>
+                            <button class="qty-btn" onclick="adjustQty(${i.id}, 1)">+</button>
+                        </div>
+                    </div>
+                `;
+            });
+            document.getElementById('total-amount').innerText = `$${total.toFixed(2)}`;
+        }
+
+        function toggleCart(open) {
+            document.getElementById('cart-drawer').style.display = open ? 'flex' : 'none';
+        }
+
+        function submitToWhatsApp() {
+            if(cart.length === 0) return alert("Agrega platos a tu comanda");
+            
+            let msg = "🛹 *ARMÓNICA PROYECT - NUEVA COMANDA* 🛹\n";
+            msg += "📍 *Ubicación:* Mesa Activa\n";
+            msg += "=========================\n";
+            let total = 0;
+            cart.forEach(i => {
+                const sub = i.price * i.qty;
+                total += sub;
+                msg += `• *${i.qty}x* ${i.name} -> _$${sub.toFixed(2)}_\n`;
+            });
+            msg += "=========================\n";
+            msg += `💰 *TOTAL ESTIMADO:* $${total.toFixed(2)}\n\n`;
+            msg += "📱 _Comanda autogestionada vía prototipo QR interactivo_";
+
+            window.open(`https://wa.me/50760000000?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        window.onload = () => renderMenu(menuProducts);
+    </script>
 </body>
 </html>
