@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Armónica - Command Center</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #050505;
+            --surface: #111111;
+            --border: #333333;
+            --yellow: #ffcc00;
+            --white: #ffffff;
+            --red: #ff3333;
+            --green: #25d366;
+            --font-head: 'Anton', sans-serif;
+            --font-body: 'Space Grotesk', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--font-body); }
+        
+        body { background-color: var(--bg-dark); color: var(--white); padding-bottom: 80px; }
+
+        /* --- PANTALLA DE LOGIN (PIN) --- */
+        #login-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-dark); display: flex; flex-direction: column;
+            align-items: center; justify-content: center; z-index: 100;
+        }
+        .login-box { text-align: center; width: 90%; max-width: 350px; }
+        .login-box h1 { font-family: var(--font-head); font-size: 40px; color: var(--yellow); margin-bottom: 10px; }
+        .login-box p { color: #888; margin-bottom: 30px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+        .pin-input {
+            width: 100%; background: #000; border: 2px solid var(--border); color: var(--white);
+            font-size: 30px; text-align: center; padding: 15px; letter-spacing: 10px;
+            font-family: var(--font-head); outline: none; margin-bottom: 20px;
+        }
+        .pin-input:focus { border-color: var(--yellow); }
+        .btn-login {
+            width: 100%; background: var(--white); color: #000; border: none; padding: 18px;
+            font-family: var(--font-head); font-size: 20px; cursor: pointer; text-transform: uppercase;
+        }
+        .btn-login:active { background: var(--yellow); }
+
+        /* --- DASHBOARD ADMIN --- */
+        #admin-dashboard { display: none; }
+        
+        .admin-header {
+            background: #000; padding: 20px; border-bottom: 2px solid var(--yellow);
+            display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 10;
+        }
+        .admin-header h2 { font-family: var(--font-head); font-size: 24px; color: var(--yellow); }
+        .btn-sync {
+            background: var(--green); color: #000; border: none; padding: 8px 16px;
+            font-family: var(--font-head); font-size: 16px; cursor: pointer; display: flex; gap: 8px; align-items: center;
+        }
+
+        .search-bar { padding: 15px; background: var(--surface); border-bottom: 1px solid var(--border); }
+        .search-bar input {
+            width: 100%; background: #000; border: 1px solid var(--border); color: var(--white);
+            padding: 12px; font-size: 16px; outline: none;
+        }
+
+        /* --- LISTA DE PRODUCTOS --- */
+        .admin-list { padding: 15px; }
+        .admin-item {
+            background: var(--surface); border: 1px solid var(--border); padding: 15px;
+            margin-bottom: 10px; display: flex; flex-direction: column; gap: 15px;
+        }
+        .item-header { display: flex; justify-content: space-between; align-items: flex-start; }
+        .item-header h3 { font-family: var(--font-head); font-size: 18px; text-transform: uppercase; }
+        .item-cat { font-size: 12px; color: #666; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .item-controls { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+        
+        .price-edit { display: flex; align-items: center; gap: 5px; background: #000; border: 1px solid var(--border); padding: 5px 10px; }
+        .price-edit span { color: var(--yellow); font-family: var(--font-head); font-size: 18px; }
+        .price-edit input {
+            background: transparent; border: none; color: var(--white); width: 60px;
+            font-family: var(--font-head); font-size: 18px; outline: none;
+        }
+
+        /* Toggle Switch (Agotado/Disponible) */
+        .toggle-btn {
+            flex: 1; padding: 12px; border: none; font-family: var(--font-head); font-size: 16px;
+            cursor: pointer; text-transform: uppercase; transition: all 0.2s;
+        }
+        .toggle-btn.on { background: rgba(37, 211, 102, 0.1); color: var(--green); border: 1px solid var(--green); }
+        .toggle-btn.off { background: rgba(255, 51, 51, 0.1); color: var(--red); border: 1px solid var(--red); }
+
+        /* Notificación flotante */
+        .toast {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background: var(--white); color: #000; padding: 12px 24px; font-family: var(--font-head);
+            font-size: 18px; border-radius: 4px; display: none; z-index: 50; box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="login-screen">
+        <div class="login-box">
+            <h1>ARMÓNICA ADMIN</h1>
+            <p><i class="fa-solid fa-lock"></i> Acceso Restringido</p>
+            <input type="password" id="pin-input" class="pin-input" placeholder="****" maxlength="4" pattern="\d*">
+            <button class="btn-login" onclick="checkPIN()">Ingresar</button>
+        </div>
+    </div>
+
+    <div id="admin-dashboard">
+        <header class="admin-header">
+            <h2><i class="fa-solid fa-sliders"></i> COMANDO</h2>
+            <button class="btn-sync" onclick="saveToCloud()"><i class="fa-solid fa-cloud-arrow-up"></i> APLICAR</button>
+        </header>
+
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="🔍 Buscar plato o cerveza..." onkeyup="filterAdminList()">
+        </div>
+
+        <div class="admin-list" id="admin-list-container">
+            </div>
+    </div>
+
+    <div class="toast" id="toast-msg">CAMBIOS APLICADOS</div>
+
+    <script>
+        // La misma base de datos del index.html
+        const defaultMenu = [
+            { id: 1, name: "Slappy", category: "hamburguesas", price: 5.00, soldOut: false },
+            { id: 2, name: "Ollie 180", category: "hamburguesas", price: 6.00, soldOut: false },
+            { id: 10, name: "Freestyle", category: "hamburguesas", price: 12.00, soldOut: false },
+            { id: 11, name: "Cinco Alitas", category: "wings", price: 5.00, soldOut: false },
+            { id: 14, name: "Diez Boneless", category: "wings", price: 11.99, soldOut: false },
+            { id: 20, name: "Papas Poser", category: "tricks", price: 3.50, soldOut: false },
+            { id: 22, name: "Papas Pop", category: "tricks", price: 4.50, soldOut: false },
+            { id: 25, name: "Wallie Nachos", category: "compartir", price: 10.00, soldOut: false },
+            { id: 27, name: "Cheese Quesadilla", category: "compartir", price: 5.00, soldOut: false },
+            { id: 29, name: "Nacionales", category: "cervezas", price: 2.00, soldOut: false },
+            { id: 34, name: "Artesanales Locales", category: "cervezas", price: 5.00, soldOut: false },
+            { id: 37, name: "Tropper", category: "cervezas", price: 8.00, soldOut: false },
+            { id: 38, name: "Agua", category: "bebidas", price: 1.00, soldOut: false },
+            { id: 41, name: "Batidos / Limonada", category: "bebidas", price: 2.50, soldOut: false }
+        ];
+
+        let adminMenu = [];
+
+        // Sistema de PIN Básico (Clave: 2026)
+        function checkPIN() {
+            const pin = document.getElementById('pin-input').value;
+            if(pin === '2026') {
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('admin-dashboard').style.display = 'block';
+                loadAdminData();
+            } else {
+                alert('PIN Incorrecto');
+                document.getElementById('pin-input').value = '';
+            }
+        }
+
+        // Cargar datos (Prioriza localStorage si existe, sino usa defaultMenu)
+        function loadAdminData() {
+            const savedData = localStorage.getItem('armonica_menu_db');
+            if(savedData) {
+                adminMenu = JSON.parse(savedData);
+            } else {
+                adminMenu = JSON.parse(JSON.stringify(defaultMenu)); // Copia profunda
+            }
+            renderAdminList(adminMenu);
+        }
+
+        function renderAdminList(dataToRender) {
+            const container = document.getElementById('admin-list-container');
+            container.innerHTML = '';
+
+            dataToRender.forEach(p => {
+                const isSoldOut = p.soldOut;
+                const btnClass = isSoldOut ? 'off' : 'on';
+                const btnText = isSoldOut ? '<i class="fa-solid fa-ban"></i> AGOTADO' : '<i class="fa-solid fa-check"></i> DISPONIBLE';
+
+                container.innerHTML += `
+                    <div class="admin-item" data-name="${p.name.toLowerCase()}">
+                        <div class="item-header">
+                            <div>
+                                <h3>${p.name}</h3>
+                                <span class="item-cat">${p.category}</span>
+                            </div>
+                        </div>
+                        <div class="item-controls">
+                            <div class="price-edit">
+                                <span>$</span>
+                                <input type="number" step="0.50" value="${p.price.toFixed(2)}" onchange="updatePrice(${p.id}, this.value)">
+                            </div>
+                            <button class="toggle-btn ${btnClass}" onclick="toggleStatus(${p.id})">
+                                ${btnText}
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function toggleStatus(id) {
+            const product = adminMenu.find(p => p.id === id);
+            if(product) {
+                product.soldOut = !product.soldOut;
+                renderAdminList(adminMenu); // Re-renderiza para actualizar colores
+            }
+        }
+
+        function updatePrice(id, newPrice) {
+            const product = adminMenu.find(p => p.id === id);
+            if(product) {
+                product.price = parseFloat(newPrice);
+            }
+        }
+
+        function filterAdminList() {
+            const term = document.getElementById('search-input').value.toLowerCase();
+            const items = document.querySelectorAll('.admin-item');
+            items.forEach(item => {
+                if(item.dataset.name.includes(term)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Simula la subida a la base de datos (Guarda en el navegador)
+        function saveToCloud() {
+            localStorage.setItem('armonica_menu_db', JSON.stringify(adminMenu));
+            
+            // Mostrar notificación visual
+            const toast = document.getElementById('toast-msg');
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 2500);
+        }
+    </script>
+</body>
+</html>
