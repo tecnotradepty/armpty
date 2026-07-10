@@ -58,12 +58,14 @@
             background: var(--green); color: #000; border: none; padding: 8px 16px;
             font-family: var(--font-head); font-size: 16px; cursor: pointer; display: flex; gap: 8px; align-items: center;
         }
+        .btn-sync:active { transform: scale(0.95); }
 
         .search-bar { padding: 15px; background: var(--surface); border-bottom: 1px solid var(--border); }
         .search-bar input {
             width: 100%; background: #000; border: 1px solid var(--border); color: var(--white);
             padding: 12px; font-size: 16px; outline: none;
         }
+        .search-bar input:focus { border-color: var(--yellow); }
 
         /* --- LISTA DE PRODUCTOS --- */
         .admin-list { padding: 15px; }
@@ -114,7 +116,7 @@
     <div id="admin-dashboard">
         <header class="admin-header">
             <h2><i class="fa-solid fa-sliders"></i> COMANDO</h2>
-            <button class="btn-sync" onclick="saveToCloud()"><i class="fa-solid fa-cloud-arrow-up"></i> APLICAR</button>
+            <button class="btn-sync" onclick="forceSync()"><i class="fa-solid fa-rotate-right"></i> REFRESCAR</button>
         </header>
 
         <div class="search-bar">
@@ -125,27 +127,11 @@
             </div>
     </div>
 
-    <div class="toast" id="toast-msg">CAMBIOS APLICADOS</div>
+    <div class="toast" id="toast-msg">SINCRONIZANDO...</div>
 
     <script>
-        // La misma base de datos del index.html
-        const defaultMenu = [
-            { id: 1, name: "Slappy", category: "hamburguesas", price: 5.00, soldOut: false },
-            { id: 2, name: "Ollie 180", category: "hamburguesas", price: 6.00, soldOut: false },
-            { id: 10, name: "Freestyle", category: "hamburguesas", price: 12.00, soldOut: false },
-            { id: 11, name: "Cinco Alitas", category: "wings", price: 5.00, soldOut: false },
-            { id: 14, name: "Diez Boneless", category: "wings", price: 11.99, soldOut: false },
-            { id: 20, name: "Papas Poser", category: "tricks", price: 3.50, soldOut: false },
-            { id: 22, name: "Papas Pop", category: "tricks", price: 4.50, soldOut: false },
-            { id: 25, name: "Wallie Nachos", category: "compartir", price: 10.00, soldOut: false },
-            { id: 27, name: "Cheese Quesadilla", category: "compartir", price: 5.00, soldOut: false },
-            { id: 29, name: "Nacionales", category: "cervezas", price: 2.00, soldOut: false },
-            { id: 34, name: "Artesanales Locales", category: "cervezas", price: 5.00, soldOut: false },
-            { id: 37, name: "Tropper", category: "cervezas", price: 8.00, soldOut: false },
-            { id: 38, name: "Agua", category: "bebidas", price: 1.00, soldOut: false },
-            { id: 41, name: "Batidos / Limonada", category: "bebidas", price: 2.50, soldOut: false }
-        ];
-
+        // API KEY de Google Sheets
+        const API_URL = "https://script.google.com/macros/s/AKfycbwSVcdlXyuXUFum8-UVOLMFrRe58AMs47Y7j20OeNwBRRqKpeonUiinjqT8ysN0n90m/exec";
         let adminMenu = [];
 
         // Sistema de PIN Básico (Clave: 2026)
@@ -161,15 +147,26 @@
             }
         }
 
-        // Cargar datos (Prioriza localStorage si existe, sino usa defaultMenu)
-        function loadAdminData() {
-            const savedData = localStorage.getItem('armonica_menu_db');
-            if(savedData) {
-                adminMenu = JSON.parse(savedData);
-            } else {
-                adminMenu = JSON.parse(JSON.stringify(defaultMenu)); // Copia profunda
+        // Descargar la Base de Datos desde Google Sheets
+        async function loadAdminData() {
+            try {
+                // Notificar que está cargando
+                document.getElementById('admin-list-container').innerHTML = '<p style="text-align:center; padding: 20px; color: var(--yellow); font-family: var(--font-head); font-size: 20px;"><i class="fa-solid fa-spinner fa-spin"></i> CONECTANDO A LA NUBE...</p>';
+                
+                const response = await fetch(API_URL);
+                const dbData = await response.json();
+                
+                adminMenu = dbData.map(p => ({
+                    ...p,
+                    price: parseFloat(p.price) || 0,
+                    soldOut: (p.soldOut === true || p.soldOut === "TRUE" || p.soldOut === "true")
+                }));
+
+                renderAdminList(adminMenu);
+            } catch (error) {
+                console.error("Error cargando DB:", error);
+                document.getElementById('admin-list-container').innerHTML = '<p style="text-align:center; color: var(--red); padding: 20px;">Error al conectar con la base de datos de Google Sheets. Revisa tu conexión.</p>';
             }
-            renderAdminList(adminMenu);
         }
 
         function renderAdminList(dataToRender) {
@@ -192,9 +189,9 @@
                         <div class="item-controls">
                             <div class="price-edit">
                                 <span>$</span>
-                                <input type="number" step="0.50" value="${p.price.toFixed(2)}" onchange="updatePrice(${p.id}, this.value)">
+                                <input type="number" step="0.50" value="${p.price.toFixed(2)}" onchange="updatePrice('${p.id}', this.value)">
                             </div>
-                            <button class="toggle-btn ${btnClass}" onclick="toggleStatus(${p.id})">
+                            <button class="toggle-btn ${btnClass}" onclick="toggleStatus('${p.id}')">
                                 ${btnText}
                             </button>
                         </div>
@@ -203,41 +200,65 @@
             });
         }
 
+        // Disparar actualización a Google Sheets
         function toggleStatus(id) {
-            const product = adminMenu.find(p => p.id === id);
+            // Asegurar que el ID coincida como string o número
+            const product = adminMenu.find(p => String(p.id) === String(id));
             if(product) {
+                // Cambiar estado localmente primero (Para velocidad visual)
                 product.soldOut = !product.soldOut;
-                renderAdminList(adminMenu); // Re-renderiza para actualizar colores
+                renderAdminList(adminMenu);
+                
+                // Enviar a la nube
+                sendUpdateToCloud({ id: product.id, soldOut: product.soldOut });
             }
         }
 
         function updatePrice(id, newPrice) {
-            const product = adminMenu.find(p => p.id === id);
+            const product = adminMenu.find(p => String(p.id) === String(id));
             if(product) {
                 product.price = parseFloat(newPrice);
+                sendUpdateToCloud({ id: product.id, price: product.price });
             }
+        }
+
+        function sendUpdateToCloud(payload) {
+            showToast("GUARDANDO...");
+            
+            fetch(API_URL, {
+                method: 'POST',
+                // Enviamos como texto plano para evitar problemas de CORS preflight en Apps Script
+                headers: {
+                    'Content-Type': 'text/plain;charset=utf-8',
+                },
+                body: JSON.stringify(payload)
+            }).then(response => {
+                showToast("¡ACTUALIZADO!");
+            }).catch(e => {
+                console.error("Error sincronizando:", e);
+                showToast("ERROR DE RED");
+            });
         }
 
         function filterAdminList() {
             const term = document.getElementById('search-input').value.toLowerCase();
             const items = document.querySelectorAll('.admin-item');
             items.forEach(item => {
-                if(item.dataset.name.includes(term)) {
-                    item.style.display = 'flex';
-                } else {
-                    item.style.display = 'none';
-                }
+                item.style.display = item.dataset.name.includes(term) ? 'flex' : 'none';
             });
         }
 
-        // Simula la subida a la base de datos (Guarda en el navegador)
-        function saveToCloud() {
-            localStorage.setItem('armonica_menu_db', JSON.stringify(adminMenu));
-            
-            // Mostrar notificación visual
+        // Botón de Refrescar
+        function forceSync() {
+            loadAdminData();
+            showToast("Sincronizando DB...");
+        }
+
+        function showToast(message) {
             const toast = document.getElementById('toast-msg');
+            toast.innerText = message;
             toast.style.display = 'block';
-            setTimeout(() => { toast.style.display = 'none'; }, 2500);
+            setTimeout(() => { toast.style.display = 'none'; }, 2000);
         }
     </script>
 </body>
